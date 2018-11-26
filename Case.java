@@ -2,10 +2,12 @@ package jeu;
 
 import java.util.Random;
 
-public class Case {
-	private int valeur = 0;
+public abstract class Case {
+
+	protected int [][] tableau = new int [4][4];
 	
-	public Case(int valeur) {
+	
+	public Case() {
 		
 	}
 	public int random() {
@@ -19,11 +21,45 @@ public class Case {
         }
        return n;
 	}	
-	public void multiplication() {
-		Math.pow(valeur,2);
+	public int multiplication(int valeur) {
+		return valeur * 2;
 	}
-	public void division() {
-		Math.pow(valeur,1/2);
+	public int division(int valeur) {
+		return valeur/2;
+	}
+	
+	public void deplacement(String choix) {
+		
+		int i;
+		int e;
+		switch (choix)
+		{
+		case "H" : 
+			for(e = 0; e < 4; e++) {
+				for(i = 3; i > 0; i--) {
+					if(tableau[i][e] != 0) 
+							if(tableau[i-1][e] == 0) {
+									tableau [i-1][e] = tableau[i][e];
+									tableau[i][e] = 0;
+							}else if(tableau[i][e] == tableau[i-1][e]) {
+								
+								tableau[i-1][e] = multiplication(tableau[i-1][e]);
+								tableau[i][e] = 0;
+					}
+				}
+			}
+			
+			
+			
+		
+			
+			
+			
+			
+		case "B" : 
+		case "G" : 
+		case "D" :
+		}
 	}
 
 }
