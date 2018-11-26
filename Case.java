@@ -35,19 +35,23 @@ public abstract class Case {
 		switch (choix)
 		{
 		case "H" : 
-			for(e = 0; e < 4; e++) {
-				for(i = 3; i > 0; i--) {
-					if(tableau[i][e] != 0) 
-							if(tableau[i-1][e] == 0) {
-									tableau [i-1][e] = tableau[i][e];
+			for(int c = 0; c < 3; c++) {
+				for(e = 0; e < 4; e++) {
+					for(i = 1; i < 4; i++) {
+						if(tableau[i][e] != 0) 
+								if(tableau[i-1][e] == 0) {
+										tableau [i-1][e] = tableau[i][e];
+										tableau[i][e] = 0;
+								}else if(tableau[i][e] == tableau[i-1][e]) {
+									
+									tableau[i-1][e] = multiplication(tableau[i-1][e]);
 									tableau[i][e] = 0;
-							}else if(tableau[i][e] == tableau[i-1][e]) {
-								
-								tableau[i-1][e] = multiplication(tableau[i-1][e]);
-								tableau[i][e] = 0;
+									
+						}
 					}
 				}
 			}
+				
 			
 			
 			
