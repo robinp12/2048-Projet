@@ -14,10 +14,7 @@ public class Joueur {
 	public void affichageTableau() {
 		int i;
 		for(i = 0; i < 4; i++){
-			int e;
-			for(e = 0; e < 4; e++){
-				System.out.println(tableau[i][e]) ;
-			}
+				System.out.println(tableau[i][0]  +"	 "+ tableau[i][1] +" 	"+ tableau[i][2] +" 	"+ tableau[i][3]) ;
 		}
 	}
 
