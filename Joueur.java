@@ -6,11 +6,10 @@ public class Joueur extends Case{
 	private int id;
 	private float timer;
 	private int score;
-	protected int [][] tableau = new int [4][4];
+
 	
 	
 	public Joueur() {
-		
 	}
 	
 	public void deplacement() {
