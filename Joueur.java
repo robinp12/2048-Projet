@@ -51,9 +51,11 @@ public class Joueur {
 	}
 	
 	public void affichageTableau() {
+		Object affi = "";
 		int i;
 		for(i = 0; i < 4; i++){
-				System.out.println(tableau[i][0]  +"	 "+ tableau[i][1] +" 	"+ tableau[i][2] +" 	"+ tableau[i][3]) ;
+			affi += tableau[i][0]  +"\t"+ tableau[i][1] +"\t"+ tableau[i][2] +"\t"+ tableau[i][3] + "\n";
 		}
+	System.out.println(affi);
 	}
 }
