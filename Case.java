@@ -5,8 +5,6 @@ import java.util.Random;
 public abstract class Case {
 
 	protected int [][] tableau = new int [4][4];
-	
-	
 	public Case() {
 		
 	}
@@ -27,7 +25,6 @@ public abstract class Case {
 	public int division(int valeur) {
 		return valeur/2;
 	}
-	
 	public void deplacement(String choix) {
 		
 		int i;
@@ -130,5 +127,4 @@ public abstract class Case {
 			break;
 		}
 	}
-
 }
