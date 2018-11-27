@@ -22,12 +22,10 @@ public class Deplacement extends JFrame  implements KeyListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
-
     @Override
-   public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e) {
     	
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
     	
@@ -54,7 +52,7 @@ public class Deplacement extends JFrame  implements KeyListener {
  	    	joueur1.affichageTableau();
  	    }
 
- 	    if (key == KeyEvent.VK_DOWN) {
+ 	    if (key == KeyEvent.VK_UP) {
  	    	System.out.println("Bas");
  	    	joueur1.deplacement("B");
  	    	joueur1.ajouteRandom();
