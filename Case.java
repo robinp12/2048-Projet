@@ -32,10 +32,13 @@ public abstract class Case {
 		
 		int i;
 		int e;
+		int c;
 		switch (choix)
 		{
 		case "H" : 
-			for(int c = 0; c < 3; c++) {
+			boolean fin = true;
+			c = 0;
+			while(fin && c < 3) {
 				for(e = 0; e < 4; e++) {
 					for(i = 1; i < 4; i++) {
 						if(tableau[i][e] != 0) 
@@ -46,23 +49,85 @@ public abstract class Case {
 									
 									tableau[i-1][e] = multiplication(tableau[i-1][e]);
 									tableau[i][e] = 0;
+									fin = false;
+									
 									
 						}
 					}
 				}
+				c++;
 			}
-				
-			
-			
-			
-		
-			
-			
-			
-			
+			break;
+
 		case "B" : 
+			fin = true;
+			c = 0;
+			while(fin && c < 3) {
+				for(e = 0; e < 4; e++) {
+					for(i = 2; i >=0; i--) {
+						if(tableau[i][e] != 0) 
+								if(tableau[i+1][e] == 0) {
+										tableau [i+1][e] = tableau[i][e];
+										tableau[i][e] = 0;
+								}else if(tableau[i][e] == tableau[i+1][e]) {
+									
+									tableau[i+1][e] = multiplication(tableau[i+1][e]);
+									tableau[i][e] = 0;
+									fin = false;
+									
+									
+						}
+					}
+				}
+				c++;
+			}
+			break;
 		case "G" : 
+			fin = true;
+			c = 0;
+			while(fin && c < 3) {
+				for(i = 0; i < 4; i++) {
+					for(e = 1; e < 4; e++) {
+						if(tableau[i][e] != 0) 
+								if(tableau[i][e-1] == 0) {
+										tableau [i][e-1] = tableau[i][e];
+										tableau[i][e] = 0;
+								}else if(tableau[i][e] == tableau[i][e-1]) {
+									
+									tableau[i][e-1] = multiplication(tableau[i][e-1]);
+									tableau[i][e] = 0;
+									fin = false;
+									
+									
+						}
+					}
+				}
+				c++;
+			}
+			break;
 		case "D" :
+			fin = true;
+			c = 0;
+			while(fin && c < 3) {
+				for(i = 0; i < 4; i++) {
+					for(e = 2 ; e >= 0; e--) {
+						if(tableau[i][e] != 0) 
+								if(tableau[i][e+1] == 0) {
+										tableau [i][e+1] = tableau[i][e];
+										tableau[i][e] = 0;
+								}else if(tableau[i][e] == tableau[i][e+1]) {
+									
+									tableau[i][e+1] = multiplication(tableau[i][e+1]);
+									tableau[i][e] = 0;
+									fin = false;
+									
+									
+						}
+					}
+				}
+				c++;
+			}
+			break;
 		}
 	}
 
