@@ -52,7 +52,7 @@ public class Deplacement extends JFrame  implements KeyListener {
  	    	joueur1.affichageTableau();
  	    }
 
- 	    if (key == KeyEvent.VK_UP) {
+ 	    if (key == KeyEvent.VK_DOWN) {
  	    	System.out.println("Bas");
  	    	joueur1.deplacement("B");
  	    	joueur1.ajouteRandom();
