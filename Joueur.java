@@ -3,19 +3,13 @@ package jeu;
 import java.util.Random;
 
 public class Joueur extends Case{
-	private int id;
-	private float timer;
-	private int score;
 
-	
 	
 	public Joueur() {
 	}
-	
 	public void deplacement() {
 		
 	}
-	
 	public void initialisation() {
 		
 		int a;
@@ -31,13 +25,12 @@ public class Joueur extends Case{
         int e = r2.nextInt(4);
         tableau[i][e] = super.random();
 	}
-	
 	public void affichageTableau() {
 		Object affi = "";
 		int i;
 		for(i = 0; i < 4; i++){
-			affi += tableau[i][0]  +"\t"+ tableau[i][1] +"\t"+ tableau[i][2] +"\t"+ tableau[i][3] + "\n";
-		}
+				affi += "\t" + tableau[i][0]  +"\t"+ tableau[i][1] +"\t"+ tableau[i][2] +"\t"+ tableau[i][3] + "\n";
+			}
 	System.out.println(affi);
 	}
 	public void ajouteRandom() {
@@ -48,6 +41,5 @@ public class Joueur extends Case{
         e = r2.nextInt(4);
         }while(tableau[i][e] != 0);
         tableau[i][e] = super.random();
-		
 	}
 }
