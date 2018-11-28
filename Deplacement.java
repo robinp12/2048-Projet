@@ -14,7 +14,7 @@ public class Deplacement extends JFrame  implements KeyListener {
     public Deplacement(String s) {
         super(s);
         JPanel p = new JPanel();
-        label = new JLabel("Key Listener!");
+        label = new JLabel("2048");
         p.add(label);
         add(p);
         addKeyListener(this);
