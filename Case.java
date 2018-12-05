@@ -3,7 +3,7 @@ package jeu;
 import java.util.Random;
 
 public abstract class Case {
-	protected boolean erreur = true;
+	protected boolean estBloquer = true;
 	protected int[][] tableau = new int[4][4];
 
 	public Case() {
@@ -30,24 +30,28 @@ public abstract class Case {
 	}
 
 	public void deplacement(String choix) {
-		erreur = true;
-		int i;
-		int e;
-		int c;
+		estBloquer = true;
+		int ligne;
+		int colonne;
+		int c = 0;
+		boolean[] changement = { false, false, false, false };
 		switch (choix) {
 		case "H":
-			c = 0;
 			while (c < 3) {
-				for (e = 0; e < 4; e++) {
-					for (i = 1; i < 4; i++) {
-						if (tableau[i][e] != 0) {
-							if (tableau[i - 1][e] == 0) {
-								tableau[i - 1][e] = tableau[i][e];
-								tableau[i][e] = 0;
-							} else if (tableau[i][e] == tableau[i - 1][e]) {
+				for (colonne = 0; colonne < 4; colonne++) {
+					for (ligne = 1; ligne < 4; ligne++) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne - 1][colonne] == 0) {
+								tableau[ligne - 1][colonne] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
 
-								tableau[i - 1][e] = multiplication(tableau[i - 1][e]);
-								tableau[i][e] = 0;
+							} else if (tableau[ligne][colonne] == tableau[ligne - 1][colonne] && !changement[colonne]) {
+
+								tableau[ligne - 1][colonne] = multiplication(tableau[ligne - 1][colonne]);
+								tableau[ligne][colonne] = 0;
+								changement[colonne] = true;
+								estBloquer = false;
 
 							}
 
@@ -61,18 +65,19 @@ public abstract class Case {
 
 		case "B":
 
-			c = 0;
 			while (c < 3) {
-				for (e = 0; e < 4; e++) {
-					for (i = 2; i >= 0; i--) {
-						if (tableau[i][e] != 0) {
-							if (tableau[i + 1][e] == 0) {
-								tableau[i + 1][e] = tableau[i][e];
-								tableau[i][e] = 0;
-							} else if (tableau[i][e] == tableau[i + 1][e]) {
-
-								tableau[i + 1][e] = multiplication(tableau[i + 1][e]);
-								tableau[i][e] = 0;
+				for (colonne = 0; colonne < 4; colonne++) {
+					for (ligne = 2; ligne >= 0; ligne--) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne + 1][colonne] == 0) {
+								tableau[ligne + 1][colonne] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
+							} else if (tableau[ligne][colonne] == tableau[ligne + 1][colonne] && !changement[colonne]) {
+								tableau[ligne + 1][colonne] = multiplication(tableau[ligne + 1][colonne]);
+								tableau[ligne][colonne] = 0;
+								changement[colonne] = true;
+								estBloquer = false;
 
 							}
 
@@ -85,18 +90,20 @@ public abstract class Case {
 			break;
 		case "G":
 
-			c = 0;
 			while (c < 3) {
-				for (i = 0; i < 4; i++) {
-					for (e = 1; e < 4; e++) {
-						if (tableau[i][e] != 0) {
-							if (tableau[i][e - 1] == 0) {
-								tableau[i][e - 1] = tableau[i][e];
-								tableau[i][e] = 0;
-							} else if (tableau[i][e] == tableau[i][e - 1]) {
+				for (ligne = 0; ligne < 4; ligne++) {
+					for (colonne = 1; colonne < 4; colonne++) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne][colonne - 1] == 0) {
+								tableau[ligne][colonne - 1] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
 
-								tableau[i][e - 1] = multiplication(tableau[i][e - 1]);
-								tableau[i][e] = 0;
+							} else if (tableau[ligne][colonne] == tableau[ligne][colonne - 1] && !changement[ligne]) {
+								tableau[ligne][colonne - 1] = multiplication(tableau[ligne][colonne - 1]);
+								tableau[ligne][colonne] = 0;
+								changement[ligne] = true;
+								estBloquer = false;
 
 							}
 
@@ -109,18 +116,20 @@ public abstract class Case {
 			break;
 		case "D":
 
-			c = 0;
 			while (c < 3) {
-				for (i = 0; i < 4; i++) {
-					for (e = 2; e >= 0; e--) {
-						if (tableau[i][e] != 0) {
-							if (tableau[i][e + 1] == 0) {
-								tableau[i][e + 1] = tableau[i][e];
-								tableau[i][e] = 0;
-							} else if (tableau[i][e] == tableau[i][e + 1]) {
+				for (ligne = 0; ligne < 4; ligne++) {
+					for (colonne = 2; colonne >= 0; colonne--) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne][colonne + 1] == 0) {
+								tableau[ligne][colonne + 1] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
 
-								tableau[i][e + 1] = multiplication(tableau[i][e + 1]);
-								tableau[i][e] = 0;
+							} else if (tableau[ligne][colonne] == tableau[ligne][colonne + 1] && !changement[ligne]) {
+								tableau[ligne][colonne + 1] = multiplication(tableau[ligne][colonne + 1]);
+								tableau[ligne][colonne] = 0;
+								changement[ligne] = true;
+								estBloquer = false;
 
 							}
 
