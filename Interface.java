@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Interface extends Deplacement{
+	Joueur joueur1 = new Joueur();
 	private static final long serialVersionUID = 1L;
 	private JLabel label;
 	JButton demarrer;
@@ -30,6 +31,7 @@ public class Interface extends Deplacement{
         demarrer.setSize(100,40);
         demarrer.setLocation(100, 300);
         demarrer.setBackground(Color.LIGHT_GRAY);
+       
 	    
         credit.setSize(100,40);
         credit.setLocation(275, 300);
@@ -42,9 +44,9 @@ public static void main(String[] args) {
 				+ " ©Tristan Pestiaux\n"
 				+ "  Robin Paquet\n"
 				+ "  Ludo Van Den Dorpe\n"
-				+ "Appuyer sur le pavé numérique pour démarrer !");
-		Joueur joueur1 = new Joueur();
-		joueur1.initialisation();
+				+ "appuyer sur une ENTER pour démarrer le 2048\n");
+	
+		
 
 	}
 
