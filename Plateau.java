@@ -2,15 +2,19 @@ package jeu;
 
 import java.util.Random;
 
-public abstract class Case {
+public abstract class Plateau {
 	protected boolean estBloquer = true;
-	protected int[][] tableau = new int[4][4];
+	int grandeur = 5;
+	protected int[][] tableau = new int[grandeur][grandeur];
+	
 
-	public Case() {
+	public Plateau() {
 
 	}
+	
 
-	public int random() {
+
+	public int generer2ou4() {
 		Random r = new Random();
 		int n = r.nextInt(2);
 		if (n == 1) {
@@ -34,12 +38,12 @@ public abstract class Case {
 		int ligne;
 		int colonne;
 		int c = 0;
-		boolean[] changement = { false, false, false, false };
+		boolean[] changement = { false, false, false, false, false, false };
 		switch (choix) {
 		case "H":
-			while (c < 3) {
-				for (colonne = 0; colonne < 4; colonne++) {
-					for (ligne = 1; ligne < 4; ligne++) {
+			while (c < grandeur -1) {
+				for (colonne = 0; colonne < grandeur; colonne++) {
+					for (ligne = 1; ligne < grandeur; ligne++) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne - 1][colonne] == 0) {
 								tableau[ligne - 1][colonne] = tableau[ligne][colonne];
@@ -65,9 +69,9 @@ public abstract class Case {
 
 		case "B":
 
-			while (c < 3) {
-				for (colonne = 0; colonne < 4; colonne++) {
-					for (ligne = 2; ligne >= 0; ligne--) {
+			while (c < grandeur-1) {
+				for (colonne = 0; colonne < grandeur; colonne++) {
+					for (ligne = grandeur-2; ligne >= 0; ligne--) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne + 1][colonne] == 0) {
 								tableau[ligne + 1][colonne] = tableau[ligne][colonne];
@@ -90,9 +94,9 @@ public abstract class Case {
 			break;
 		case "G":
 
-			while (c < 3) {
-				for (ligne = 0; ligne < 4; ligne++) {
-					for (colonne = 1; colonne < 4; colonne++) {
+			while (c < grandeur-1) {
+				for (ligne = 0; ligne < grandeur; ligne++) {
+					for (colonne = 1; colonne < grandeur; colonne++) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne][colonne - 1] == 0) {
 								tableau[ligne][colonne - 1] = tableau[ligne][colonne];
@@ -116,9 +120,9 @@ public abstract class Case {
 			break;
 		case "D":
 
-			while (c < 3) {
-				for (ligne = 0; ligne < 4; ligne++) {
-					for (colonne = 2; colonne >= 0; colonne--) {
+			while (c < grandeur-1) {
+				for (ligne = 0; ligne < grandeur; ligne++) {
+					for (colonne = grandeur-2; colonne >= 0; colonne--) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne][colonne + 1] == 0) {
 								tableau[ligne][colonne + 1] = tableau[ligne][colonne];
