@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 public class Interface extends Deplacement{
 	private static final long serialVersionUID = 1L;
-	
+	Joueur joueur1 = new Joueur();
 	private JFrame frame;
 	private Container contentPane;
 	
@@ -138,7 +138,6 @@ public class Interface extends Deplacement{
 				+ "<br> Robin Paquet"
 				+ "<br> Ludo Van Den Dorpe</center></html>";
 	}
-	
 public static void main(String[] args) {
 		
 		new Interface();
@@ -146,7 +145,9 @@ public static void main(String[] args) {
 				+ " ©Tristan Pestiaux\n"
 				+ "  Robin Paquet\n"
 				+ "  Ludo Van Den Dorpe\n"
-				+ "Appuyer sur le pavé numérique pour démarrer !");
+				+ "appuyer sur une ENTER pour démarrer le 2048\n");
+	
+		
 
 	}
 
