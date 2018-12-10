@@ -11,8 +11,8 @@ public class Deplacement extends JFrame implements KeyListener{
 	
 	 Joueur joueur1 = new Joueur();
 
-	public Deplacement() {
-    	super();
+	public Deplacement(String s) {
+    	super(s);
     }
 
 	@Override
