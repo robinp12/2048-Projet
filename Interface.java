@@ -19,7 +19,7 @@ public class Interface extends Deplacement{
 	public void tuiles(int tailleCase) {	
 		
 		//Color couleurGris = new Color(200,200,200);
-		Color couleurNoir = new Color(100,100,100);
+		Color couleurNoir = new Color(180,180,180);
 		
 		JPanel [] rangee1 = new JPanel[4];
 		for(int i=0; i< 4; i++) {
@@ -137,7 +137,7 @@ public class Interface extends Deplacement{
 	public Interface(int tailleCase, String s) {
 		super(s);
 		frame.setVisible(true);
-		frame.setSize(700,550);
+		frame.setSize(700,515);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.addKeyListener(this);
@@ -148,6 +148,7 @@ public class Interface extends Deplacement{
 		frame.add(separateurHor);
 		
 		JLabel label = new JLabel("2048");
+		label.setForeground(Color.ORANGE);
         label.setSize(200,100);
         label.setLocation(490, 30);
         label.setFont(new Font("Arial", Font.BOLD, 70));
@@ -183,24 +184,32 @@ public class Interface extends Deplacement{
         upBut.setSize(50, 40);
         upBut.setLocation(540, 250+70);
         upBut.addActionListener(actionUp);
+        upBut.setBackground(Color.LIGHT_GRAY);
+        upBut.setForeground(Color.BLUE);
         frame.add(upBut);
         
         JButton downBut = new JButton("D");
         downBut.setSize(50, 40);
         downBut.setLocation(540, 300+70);
         downBut.addActionListener(actionDown);
+        downBut.setBackground(Color.LIGHT_GRAY);
+        downBut.setForeground(Color.BLUE);
         frame.add(downBut);
         
         JButton leftBut = new JButton("L");
         leftBut.setSize(50, 40);
         leftBut.setLocation(480, 300+70);
         leftBut.addActionListener(actionLeft);
+        leftBut.setBackground(Color.LIGHT_GRAY);
+        leftBut.setForeground(Color.BLUE);
         frame.add(leftBut);
         
         JButton rightBut = new JButton("R");
         rightBut.setSize(50, 40);
         rightBut.setLocation(600, 300+70);
         rightBut.addActionListener(actionRight);
+        rightBut.setBackground(Color.LIGHT_GRAY);
+        rightBut.setForeground(Color.BLUE);
         frame.add(rightBut);
         
 	}
