@@ -174,7 +174,6 @@ public class Interface extends Deplacement{
         console.setSize(150,40);
         console.setLocation(490, 250);
         console.setBackground(Color.LIGHT_GRAY);
-        console.addActionListener(actionCredit);
         frame.add(console);
         
         JSeparator separateurVer2 = new JSeparator(getHeight());
