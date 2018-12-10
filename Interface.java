@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 public class Interface extends Deplacement{
 	private static final long serialVersionUID = 1L;
@@ -17,7 +18,7 @@ public class Interface extends Deplacement{
 	
 	public void tuiles(int tailleCase) {	
 		
-		Color couleurGris = new Color(200,200,200);
+		//Color couleurGris = new Color(200,200,200);
 		Color couleurNoir = new Color(100,100,100);
 		
 		JPanel [] rangee1 = new JPanel[4];
@@ -50,9 +51,9 @@ public class Interface extends Deplacement{
 		JPanel [] rangee4 = new JPanel[4];
 		for(int i=0; i< 4; i++) {
 			rangee4[i] = new JPanel();
-			rangee4[i].setBackground(couleurGris);
+			rangee4[i].setBackground(couleurNoir);
 			rangee4[i].setSize(tailleCase, tailleCase);
-			rangee4[i].setLocation(110*i, 200);
+			rangee4[i].setLocation(110*i+10, 340);
 			rangee4[i].setVisible(true);
 			frame.add(rangee4[i]);
 		}
@@ -84,19 +85,25 @@ public class Interface extends Deplacement{
         }
     };
     
-	public Interface(int tailleCase) {
-		
+	public Interface(int tailleCase, String s) {
+		super(s);
 		frame.setVisible(true);
 		frame.setSize(700,550);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.addKeyListener(this);
+		
+		tuiles(tailleCase);
 		
 		JLabel label = new JLabel("2048");
         label.setSize(200, 100);
         label.setLocation(485, 30);
         label.setFont(new Font("Arial", Font.PLAIN, 70));
         frame.add(label);
+        
+		JSeparator sep = new JSeparator(getWidth());
+		frame.add(sep);
+		
         
 		JButton demarrer = new JButton("Demarrer");
 		demarrer.setSize(150,40);
@@ -112,8 +119,6 @@ public class Interface extends Deplacement{
         credit.addActionListener(actionCredit);
         frame.add(credit);
         
-
-        tuiles(tailleCase);
 	}
 	public String texte() {
 
@@ -125,7 +130,7 @@ public class Interface extends Deplacement{
 	}
 public static void main(String[] args) {
 	int tailleCase = 100;
-    new Interface(tailleCase);
+    new Interface(tailleCase,"");
 	
     System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
 			+ " ©Tristan Pestiaux\n"
