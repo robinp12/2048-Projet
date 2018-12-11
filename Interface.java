@@ -13,7 +13,7 @@ import javax.swing.JSeparator;
 
 public class Interface extends Deplacement{
 	private static final long serialVersionUID = 1L;
-	Joueur joueur1 = new Joueur();
+	Plateau joueur1 = new Plateau();
 	JFrame frame = new JFrame("Projet 2048");
 	
 	public void tuiles(int tailleCase) {	
@@ -222,6 +222,7 @@ public class Interface extends Deplacement{
 				+ "<br> Ludo Van Den Dorpe</center></html>";
 	}
 public static void main(String[] args) {
+	
 	int tailleCase = 100;
     new Interface(tailleCase,"");
 	
