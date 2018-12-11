@@ -2,19 +2,31 @@ package jeu;
 
 import java.util.Random;
 
-public class Joueur extends Plateau {
-	/*
-	 * private int id; private float timer; private int score;
-	 */
+public class Plateau extends Joueur {
 
-	public Joueur() {
+	public Plateau() {
 	}
 
 	public void deplacement() {
-
+		
 	}
+	
+	public int generer2ou4() {
+		Random r = new Random();
+		int n = r.nextInt(2);
+		if (n == 1) {
+			n = 2;
+		} else if (n == 0) {
+			n = 4;
+		}
+		return n;
+	}
+	
+
+	
 
 	public void initialisation() {
+		score = 0;
 		estBloquer = false;
 		int a;
 		for (a = 0; a < grandeur; a++) {
@@ -89,10 +101,13 @@ public class Joueur extends Plateau {
 			}
 		}
 		if(estGagner) {
+			System.out.println("score : " + score + "\n");
 			System.out.println("Gagné !");
 		}else if(estPerdu) {
+			System.out.println("score : " + score + "\n");
 			System.out.println("Perdu !\n appuyer sur enter pour redémarrer");
 		}else {
+		System.out.println("score : " + score + "\n");
 		System.out.println(affi);
 		}
 	}
@@ -105,7 +120,7 @@ public class Joueur extends Plateau {
 				Random r2 = new Random();
 				e = r2.nextInt(grandeur);
 			} while (tableau[i][e] != 0);
-			tableau[i][e] = super.generer2ou4();
+			tableau[i][e] = generer2ou4();
 		}
 
 	}
