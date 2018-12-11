@@ -13,7 +13,8 @@ import javax.swing.JSeparator;
 
 public class Interface extends Deplacement{
 	private static final long serialVersionUID = 1L;
-	Plateau joueur1 = new Plateau();
+	Plateau joueur1 = new Plateau(4);
+
 	JFrame frame = new JFrame("Projet 2048");
 	
 	public void tuiles(int tailleCase) {	
@@ -65,7 +66,8 @@ public class Interface extends Deplacement{
 
 		@Override
         public void actionPerformed(ActionEvent e) {
-            joueur1.initialisation();
+            joueur1.initialisation(6);
+            
         }
     };
     AbstractAction actionCredit = new AbstractAction() {
@@ -225,12 +227,13 @@ public static void main(String[] args) {
 	
 	int tailleCase = 100;
     new Interface(tailleCase,"");
+
 	
     System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
 			+ " ©Tristan Pestiaux\n"
 			+ "  Robin Paquet\n"
 			+ "  Ludo Van Den Dorpe\n"
-			+ "appuyer sur une ENTER pour démarrer le 2048\n");
+			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et démarrer le 2048\n");
     
 
 	}
