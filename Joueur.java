@@ -3,24 +3,26 @@ package jeu;
 
 public abstract class Joueur {
 	/*
-	 * private int id; private float timer; private int score;
+	 * private int id; private float timer;
 	 */
 	
 	protected int score = 0;
-
 	protected boolean estBloquer = true;
-	int grandeur = 4;
-	protected int[][] tableau = new int[grandeur][grandeur];
+	protected int dimension;
+	protected int[][] tableau = new int[10][10];
 	
 
 
-	public Joueur() {
-
+	public Joueur(int dimension) {
+		this.dimension = dimension;
 	}
 	public int getScore() {
 		return score;
 	}
 
+	public void setDimension(int x) {
+		dimension = x;
+	}
 
 
 
@@ -41,9 +43,9 @@ public abstract class Joueur {
 		boolean[] changement = { false, false, false, false, false, false, false, false, false, false };
 		switch (choix) {
 		case "H":
-			while (c < grandeur -1) {
-				for (colonne = 0; colonne < grandeur; colonne++) {
-					for (ligne = 1; ligne < grandeur; ligne++) {
+			while (c < dimension -1) {
+				for (colonne = 0; colonne < dimension; colonne++) {
+					for (ligne = 1; ligne < dimension; ligne++) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne - 1][colonne] == 0) {
 								tableau[ligne - 1][colonne] = tableau[ligne][colonne];
@@ -69,9 +71,9 @@ public abstract class Joueur {
 
 		case "B":
 
-			while (c < grandeur-1) {
-				for (colonne = 0; colonne < grandeur; colonne++) {
-					for (ligne = grandeur-2; ligne >= 0; ligne--) {
+			while (c < dimension-1) {
+				for (colonne = 0; colonne < dimension; colonne++) {
+					for (ligne = dimension-2; ligne >= 0; ligne--) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne + 1][colonne] == 0) {
 								tableau[ligne + 1][colonne] = tableau[ligne][colonne];
@@ -94,9 +96,9 @@ public abstract class Joueur {
 			break;
 		case "G":
 
-			while (c < grandeur-1) {
-				for (ligne = 0; ligne < grandeur; ligne++) {
-					for (colonne = 1; colonne < grandeur; colonne++) {
+			while (c < dimension-1) {
+				for (ligne = 0; ligne < dimension; ligne++) {
+					for (colonne = 1; colonne < dimension; colonne++) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne][colonne - 1] == 0) {
 								tableau[ligne][colonne - 1] = tableau[ligne][colonne];
@@ -120,9 +122,9 @@ public abstract class Joueur {
 			break;
 		case "D":
 
-			while (c < grandeur-1) {
-				for (ligne = 0; ligne < grandeur; ligne++) {
-					for (colonne = grandeur-2; colonne >= 0; colonne--) {
+			while (c < dimension-1) {
+				for (ligne = 0; ligne < dimension; ligne++) {
+					for (colonne = dimension-2; colonne >= 0; colonne--) {
 						if (tableau[ligne][colonne] != 0) {
 							if (tableau[ligne][colonne + 1] == 0) {
 								tableau[ligne][colonne + 1] = tableau[ligne][colonne];
