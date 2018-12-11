@@ -17,49 +17,58 @@ public class Interface extends Deplacement{
 
 	JFrame frame = new JFrame("Projet 2048");
 	
-	public void tuiles(int tailleCase) {	
+	public void tuiles(int x) {	
 		
-		//Color couleurGris = new Color(200,200,200);
 		Color couleurNoir = new Color(180,180,180);
 		
-		JPanel [] rangee1 = new JPanel[4];
-		for(int i=0; i< 4; i++) {
-			rangee1[i] = new JPanel();
-			rangee1[i].setBackground(couleurNoir);
-			rangee1[i].setSize(tailleCase, tailleCase);
-			rangee1[i].setLocation(110*i+20, 20);
-			rangee1[i].setVisible(true);
-			frame.add(rangee1[i]);
-		}
-		JPanel [] rangee2 = new JPanel[4];
-		for(int i=0; i< 4; i++) {
-			rangee2[i] = new JPanel();
-			rangee2[i].setBackground(couleurNoir);
-			rangee2[i].setSize(tailleCase, tailleCase);
-			rangee2[i].setLocation(110*i+20, 130);
-			rangee2[i].setVisible(true);
-			frame.add(rangee2[i]);
-		}
-		JPanel [] rangee3 = new JPanel[4];
-		for(int i=0; i< 4; i++) {
-			rangee3[i] = new JPanel();
-			rangee3[i].setBackground(couleurNoir);
-			rangee3[i].setSize(tailleCase, tailleCase);
-			rangee3[i].setLocation(110*i+20, 240);
-			rangee3[i].setVisible(true);
-			frame.add(rangee3[i]);
-		}
-		JPanel [] rangee4 = new JPanel[4];
-		for(int i=0; i< 4; i++) {
-			rangee4[i] = new JPanel();
-			rangee4[i].setBackground(couleurNoir);
-			rangee4[i].setSize(tailleCase, tailleCase);
-			rangee4[i].setLocation(110*i+20, 350);
-			rangee4[i].setVisible(true);
-			frame.add(rangee4[i]);
+		
+		JPanel [][] panel = new JPanel[x][x];
+		for(int i= 0; i<x; i++) {
+			for(int e= 0; e<x; e++) {
+			panel[i][e] = new JPanel();
+			panel[i][e].setSize((10*x)*(x*1/4), (10*x)*(x*1/4));
+			panel[i][e].setBackground(Color.orange);
+			panel[i][e].setLocation((x*20)*i+20, (x*20)*e+20);
+			frame.add(panel[i][e]);
+			}
 		}
 		
 	}
+	
+	public void dPad(int position) {
+		 JButton upBut = new JButton("U");
+	        upBut.setSize(50, 40);
+	        upBut.setLocation(540, 250+position);
+	        upBut.addActionListener(actionUp);
+	        upBut.setBackground(Color.LIGHT_GRAY);
+	        upBut.setForeground(Color.BLUE);
+	        frame.add(upBut);
+	        
+	        JButton downBut = new JButton("D");
+	        downBut.setSize(50, 40);
+	        downBut.setLocation(540, 300+position);
+	        downBut.addActionListener(actionDown);
+	        downBut.setBackground(Color.LIGHT_GRAY);
+	        downBut.setForeground(Color.BLUE);
+	        frame.add(downBut);
+	        
+	        JButton leftBut = new JButton("L");
+	        leftBut.setSize(50, 40);
+	        leftBut.setLocation(480, 300+position);
+	        leftBut.addActionListener(actionLeft);
+	        leftBut.setBackground(Color.LIGHT_GRAY);
+	        leftBut.setForeground(Color.BLUE);
+	        frame.add(leftBut);
+	        
+	        JButton rightBut = new JButton("R");
+	        rightBut.setSize(50, 40);
+	        rightBut.setLocation(600, 300+position);
+	        rightBut.addActionListener(actionRight);
+	        rightBut.setBackground(Color.LIGHT_GRAY);
+	        rightBut.setForeground(Color.BLUE);
+	        frame.add(rightBut);
+	}
+	
 	AbstractAction actionDemarrer = new AbstractAction() {
 
 		private static final long serialVersionUID = 1L;
@@ -136,7 +145,7 @@ public class Interface extends Deplacement{
         }
     };
     
-	public Interface(int tailleCase, String s) {
+	public Interface(int x, String s) {
 		super(s);
 		frame.setVisible(true);
 		frame.setSize(700,515);
@@ -144,9 +153,10 @@ public class Interface extends Deplacement{
 		frame.setLocationRelativeTo(null);
 		frame.addKeyListener(this);
 		
-		tuiles(tailleCase);
 		
-		JSeparator separateurHor = new JSeparator(getWidth());
+		tuiles(x);
+		
+		JSeparator separateurHor = new JSeparator();
 		frame.add(separateurHor);
 		
 		JLabel label = new JLabel("2048");
@@ -173,46 +183,10 @@ public class Interface extends Deplacement{
         credit.addActionListener(actionCredit);
         frame.add(credit);
         
-        JButton console = new JButton("Console");
-        console.setSize(150,40);
-        console.setLocation(490, 250);
-        console.setBackground(Color.LIGHT_GRAY);
-        frame.add(console);
-        
         JSeparator separateurVer2 = new JSeparator(getHeight());
 		frame.add(separateurVer2);
         
-        JButton upBut = new JButton("U");
-        upBut.setSize(50, 40);
-        upBut.setLocation(540, 250+70);
-        upBut.addActionListener(actionUp);
-        upBut.setBackground(Color.LIGHT_GRAY);
-        upBut.setForeground(Color.BLUE);
-        frame.add(upBut);
-        
-        JButton downBut = new JButton("D");
-        downBut.setSize(50, 40);
-        downBut.setLocation(540, 300+70);
-        downBut.addActionListener(actionDown);
-        downBut.setBackground(Color.LIGHT_GRAY);
-        downBut.setForeground(Color.BLUE);
-        frame.add(downBut);
-        
-        JButton leftBut = new JButton("L");
-        leftBut.setSize(50, 40);
-        leftBut.setLocation(480, 300+70);
-        leftBut.addActionListener(actionLeft);
-        leftBut.setBackground(Color.LIGHT_GRAY);
-        leftBut.setForeground(Color.BLUE);
-        frame.add(leftBut);
-        
-        JButton rightBut = new JButton("R");
-        rightBut.setSize(50, 40);
-        rightBut.setLocation(600, 300+70);
-        rightBut.addActionListener(actionRight);
-        rightBut.setBackground(Color.LIGHT_GRAY);
-        rightBut.setForeground(Color.BLUE);
-        frame.add(rightBut);
+		dPad(100);
         
 	}
 	public String texte() {
@@ -225,15 +199,15 @@ public class Interface extends Deplacement{
 	}
 public static void main(String[] args) {
 	
-	int tailleCase = 100;
-    new Interface(tailleCase,"");
+	int x = 4;
+    new Interface(x,"");
 
 	
     System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
 			+ " ©Tristan Pestiaux\n"
 			+ "  Robin Paquet\n"
 			+ "  Ludo Van Den Dorpe\n"
-			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et démarrer le 2048\n");
+			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et dÃ©marrer le 2048\n");
     
 
 	}
