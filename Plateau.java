@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class Plateau extends Joueur {
 
-	public Plateau() {
+	public Plateau(int dimension) {
+		super(dimension);
 	}
 
 	public void deplacement() {
@@ -25,13 +26,14 @@ public class Plateau extends Joueur {
 
 	
 
-	public void initialisation() {
+	public void initialisation(int x) {
+		setDimension(x);
 		score = 0;
 		estBloquer = false;
 		int a;
-		for (a = 0; a < grandeur; a++) {
+		for (a = 0; a < dimension; a++) {
 			int b;
-			for (b = 0; b < grandeur; b++) {
+			for (b = 0; b < dimension; b++) {
 				tableau[a][b] = 0;
 			}
 		}
@@ -45,13 +47,13 @@ public class Plateau extends Joueur {
 		 boolean estPerdu = false;
 		if(!estBloquer) {
 			int i;
-			for (i = 0; i < grandeur; i++) {
-				for(int e = 0; e < grandeur; e++) {
+			for (i = 0; i < dimension; i++) {
+				for(int e = 0; e < dimension; e++) {
 					if(tableau[i][e] == 128) {
 						estGagner = true;
 					}
 				}
-				for(int a = 0; a < grandeur; a++) {
+				for(int a = 0; a < dimension; a++) {
 					affi += tableau[i][a] + "\t";
 				}
 				affi += "\n";
@@ -61,8 +63,8 @@ public class Plateau extends Joueur {
 			int compteur = 0;
 			int compteur2 = 0;
 			
-			for(int i = 0; i < grandeur; i++) {
-				for(int e = 0; e < grandeur; e++) {
+			for(int i = 0; i < dimension; i++) {
+				for(int e = 0; e < dimension; e++) {
 					if(tableau[i][e] == 128) {
 						estGagner = true;
 						
@@ -74,17 +76,17 @@ public class Plateau extends Joueur {
 						}
 					}
 				}
-			if(compteur == Math.pow(grandeur, 2)) {
+			if(compteur == Math.pow(dimension, 2)) {
 			
-				for(int i = 0; i < grandeur-1; i++) {
-					for(int e = 0; e < grandeur; e++) {
+				for(int i = 0; i < dimension-1; i++) {
+					for(int e = 0; e < dimension; e++) {
 						if(tableau[i][e] != tableau[i+1][e]) {
 							compteur2++;	//max grandeur * grandeur-1			
 						}
 					}
 				}
-				for(int e = 0; e < grandeur-1; e++) {
-					for(int i = 0; i < grandeur; i++) {
+				for(int e = 0; e < dimension-1; e++) {
+					for(int i = 0; i < dimension; i++) {
 						if(tableau[i][e] != tableau[i][e+1]) {
 							compteur2++;	//max grandeur * grandeur-1			
 						}
@@ -94,7 +96,7 @@ public class Plateau extends Joueur {
 			
 			
 			
-			if(compteur2 == 2*grandeur*(grandeur-1)) {
+			if(compteur2 == 2*dimension*(dimension-1)) {
 				estPerdu = true;
 				estBloquer = true;
 
@@ -116,9 +118,9 @@ public class Plateau extends Joueur {
 			int i, e;
 			do {
 				Random r1 = new Random();
-				i = r1.nextInt(grandeur);
+				i = r1.nextInt(dimension);
 				Random r2 = new Random();
-				e = r2.nextInt(grandeur);
+				e = r2.nextInt(dimension);
 			} while (tableau[i][e] != 0);
 			tableau[i][e] = generer2ou4();
 		}
