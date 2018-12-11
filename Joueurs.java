@@ -1,31 +1,31 @@
 package jeu;
 
-import java.util.Random;
 
-public abstract class Plateau {
+public abstract class Joueur {
+	/*
+	 * private int id; private float timer; private int score;
+	 */
+	
+	protected int score = 0;
+
 	protected boolean estBloquer = true;
-	int grandeur = 5;
+	int grandeur = 4;
 	protected int[][] tableau = new int[grandeur][grandeur];
 	
 
-	public Plateau() {
+
+	public Joueur() {
 
 	}
-	
-
-
-	public int generer2ou4() {
-		Random r = new Random();
-		int n = r.nextInt(2);
-		if (n == 1) {
-			n = 2;
-		} else if (n == 0) {
-			n = 4;
-		}
-		return n;
+	public int getScore() {
+		return score;
 	}
+
+
+
 
 	public int multiplication(int valeur) {
+		score += valeur * 10;
 		return valeur * 2;
 	}
 
@@ -38,7 +38,7 @@ public abstract class Plateau {
 		int ligne;
 		int colonne;
 		int c = 0;
-		boolean[] changement = { false, false, false, false, false, false };
+		boolean[] changement = { false, false, false, false, false, false, false, false, false, false };
 		switch (choix) {
 		case "H":
 			while (c < grandeur -1) {
