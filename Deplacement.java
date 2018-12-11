@@ -9,7 +9,7 @@ public class Deplacement extends JFrame implements KeyListener{
 
 	private static final long serialVersionUID = 1L;
 	
-	 Joueur joueur1 = new Joueur();
+	 Plateau joueur1 = new Plateau();
 
 	public Deplacement(String s) {
     	super(s);
