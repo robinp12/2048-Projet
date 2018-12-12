@@ -21,29 +21,63 @@ public class Interface extends Deplacement{
 	public void tuiles(int x) {	
 		
 		Color couleurNoir = new Color(180,180,180);
-		
-		
 		JPanel [][] panel = new JPanel[x][x];
-		JLabel [][] labe = new JLabel[x][x];
 		for(int i= 0; i<x; i++) {
 			for(int e= 0; e<x; e++) {
-			panel[i][e] = new JPanel();
-			panel[i][e].setSize(100, 100);
-			panel[i][e].setBackground(Color.orange);
-			panel[i][e].setLocation(110*i+20, 110*e+20);
-			frame.add(panel[i][e]);
-			
-			labe[i][e] = new JLabel();
-			labe[i][e].setSize(100, 100);
-			labe[i][e].setText(String.valueOf(0));
-			labe[i][e].setFont(new Font("Arial", Font.PLAIN, 80));
-			labe[i][e].setForeground(Color.DARK_GRAY);
-			panel[i][e].add(labe[i][e]);
+				switch(x) {
+				case 2 :
+					panel[i][e] = new JPanel();
+					panel[i][e].setSize(200,200);
+					panel[i][e].setBackground(Color.orange);
+					panel[i][e].setLocation(210*i+30, 210 * e+30);
+					frame.add(panel[i][e]);
+					break;
+				case 3 : 
+					panel[i][e] = new JPanel();
+					panel[i][e].setSize(130,130);
+					panel[i][e].setBackground(Color.orange);
+					panel[i][e].setLocation(140*i+25, 140 * e+25);
+					frame.add(panel[i][e]);
+					break;
+				case 4 : 
+					panel[i][e] = new JPanel();
+					panel[i][e].setSize(100,100);
+					panel[i][e].setBackground(Color.orange);
+					panel[i][e].setLocation(110*i+20, 110 * e+20);
+					frame.add(panel[i][e]);
+					break;
+				case 5 : 
+					panel[i][e] = new JPanel();
+					panel[i][e].setSize(80,80);
+					panel[i][e].setBackground(Color.orange);
+					panel[i][e].setLocation(90*i+20, 90 * e+20);
+					frame.add(panel[i][e]);
+					break;
+				case 6 :
+					panel[i][e] = new JPanel();
+					panel[i][e].setSize(65,65);
+					panel[i][e].setBackground(Color.orange);
+					panel[i][e].setLocation(75*i+15, 75 * e+15);
+					frame.add(panel[i][e]);
+					break;
+				case 7 :
+					panel[i][e] = new JPanel();
+					panel[i][e].setSize(55,55);
+					panel[i][e].setBackground(Color.orange);
+					panel[i][e].setLocation(65*i+12, 65 * e+12);
+					frame.add(panel[i][e]);
+					break;
+				case 8 :
+					panel[i][e] = new JPanel();
+					panel[i][e].setSize(45,45);
+					panel[i][e].setBackground(Color.orange);
+					panel[i][e].setLocation(55*i+10, 55 * e+10);
+					frame.add(panel[i][e]);
+					break;
+				case 9 : ;	
+				}
 			}
 		}
-		
-		
-		
 	}
 	
 	public void dPad(int position) {
@@ -86,7 +120,7 @@ public class Interface extends Deplacement{
 
 		@Override
         public void actionPerformed(ActionEvent e) {
-            joueur1.initialisation(6);
+            joueur1.initialisation(x);
             
         }
     };
@@ -204,20 +238,21 @@ public class Interface extends Deplacement{
 
 		return "<html><center>Bienvenue dans notre 2048 Perso"
 				+ "<br>en JAVA !"
-				+ "<br>Â© Tristan Pestiaux"
+				+ "<br>© Tristan Pestiaux"
 				+ "<br> Robin Paquet"
 				+ "<br> Ludo Van Den Dorpe</center></html>";
 	}
 public static void main(String[] args) {
 	
+	
     new Interface("");
 
 	
     System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
-			+ " Â©Tristan Pestiaux\n"
+			+ " ©Tristan Pestiaux\n"
 			+ "  Robin Paquet\n"
 			+ "  Ludo Van Den Dorpe\n"
-			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et dÃƒÂ©marrer le 2048\n");
+			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et dÃ©marrer le 2048\n");
     
 
 	}
