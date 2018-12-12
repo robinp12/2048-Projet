@@ -13,7 +13,8 @@ import javax.swing.JSeparator;
 
 public class Interface extends Deplacement{
 	private static final long serialVersionUID = 1L;
-	Plateau joueur1 = new Plateau(4);
+	Plateau joueur1 = new Plateau();
+	int x = joueur1.getDimension();
 
 	JFrame frame = new JFrame("Projet 2048");
 	
@@ -26,9 +27,9 @@ public class Interface extends Deplacement{
 		for(int i= 0; i<x; i++) {
 			for(int e= 0; e<x; e++) {
 			panel[i][e] = new JPanel();
-			panel[i][e].setSize((10*x)*(x*1/4), (10*x)*(x*1/4));
+			panel[i][e].setSize(100,100);
 			panel[i][e].setBackground(Color.orange);
-			panel[i][e].setLocation((x*20)*i+20, (x*20)*e+20);
+			panel[i][e].setLocation(110*i+20, 110 * e+20);
 			frame.add(panel[i][e]);
 			}
 		}
@@ -75,7 +76,7 @@ public class Interface extends Deplacement{
 
 		@Override
         public void actionPerformed(ActionEvent e) {
-            joueur1.initialisation(6);
+            joueur1.initialisation(x);
             
         }
     };
@@ -145,7 +146,7 @@ public class Interface extends Deplacement{
         }
     };
     
-	public Interface(int x, String s) {
+	public Interface(String s) {
 		super(s);
 		frame.setVisible(true);
 		frame.setSize(700,515);
@@ -199,8 +200,8 @@ public class Interface extends Deplacement{
 	}
 public static void main(String[] args) {
 	
-	int x = 4;
-    new Interface(x,"");
+	
+    new Interface("");
 
 	
     System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
