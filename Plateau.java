@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Plateau extends Joueur {
 
-	public Plateau(int dimension) {
-		super(dimension);
+	public Plateau() {
+
 	}
 
 	public void deplacement() {
