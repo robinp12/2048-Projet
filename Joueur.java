@@ -8,13 +8,13 @@ public abstract class Joueur {
 	
 	protected int score = 0;
 	protected boolean estBloquer = true;
-	protected int dimension;
+	protected int dimension = 4;
 	protected int[][] tableau = new int[10][10];
 	
 
 
-	public Joueur(int dimension) {
-		this.dimension = dimension;
+	public Joueur() {
+		
 	}
 	public int getScore() {
 		return score;
@@ -22,6 +22,9 @@ public abstract class Joueur {
 
 	public void setDimension(int x) {
 		dimension = x;
+	}
+	public int getDimension() {
+		return dimension;
 	}
 
 
