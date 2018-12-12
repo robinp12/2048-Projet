@@ -47,7 +47,7 @@ public class Interface extends Deplacement{
 	}
 	
 	public void dPad(int position) {
-		 JButton upBut = new JButton("U");
+		 JButton upBut = new JButton("\u21e7");
 	        upBut.setSize(50, 40);
 	        upBut.setLocation(540, 250+position);
 	        upBut.addActionListener(actionUp);
@@ -55,7 +55,7 @@ public class Interface extends Deplacement{
 	        upBut.setForeground(Color.BLUE);
 	        frame.add(upBut);
 	        
-	        JButton downBut = new JButton("D");
+	        JButton downBut = new JButton("\u21e9");
 	        downBut.setSize(50, 40);
 	        downBut.setLocation(540, 300+position);
 	        downBut.addActionListener(actionDown);
@@ -63,7 +63,7 @@ public class Interface extends Deplacement{
 	        downBut.setForeground(Color.BLUE);
 	        frame.add(downBut);
 	        
-	        JButton leftBut = new JButton("L");
+	        JButton leftBut = new JButton("\u21e6");
 	        leftBut.setSize(50, 40);
 	        leftBut.setLocation(480, 300+position);
 	        leftBut.addActionListener(actionLeft);
@@ -71,7 +71,7 @@ public class Interface extends Deplacement{
 	        leftBut.setForeground(Color.BLUE);
 	        frame.add(leftBut);
 	        
-	        JButton rightBut = new JButton("R");
+	        JButton rightBut = new JButton("\u21e8");
 	        rightBut.setSize(50, 40);
 	        rightBut.setLocation(600, 300+position);
 	        rightBut.addActionListener(actionRight);
