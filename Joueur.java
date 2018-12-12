@@ -14,7 +14,6 @@ public abstract class Joueur {
 
 
 	public Joueur() {
-		
 	}
 	public int getScore() {
 		return score;
@@ -23,7 +22,7 @@ public abstract class Joueur {
 	public void setDimension(int x) {
 		dimension = x;
 	}
-	public int getDimension() {
+	public int getDimension(){
 		return dimension;
 	}
 
