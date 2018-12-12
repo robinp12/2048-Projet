@@ -24,15 +24,25 @@ public class Interface extends Deplacement{
 		
 		
 		JPanel [][] panel = new JPanel[x][x];
+		JLabel [][] labe = new JLabel[x][x];
 		for(int i= 0; i<x; i++) {
 			for(int e= 0; e<x; e++) {
 			panel[i][e] = new JPanel();
-			panel[i][e].setSize(100,100);
+			panel[i][e].setSize(100, 100);
 			panel[i][e].setBackground(Color.orange);
-			panel[i][e].setLocation(110*i+20, 110 * e+20);
+			panel[i][e].setLocation(110*i+20, 110*e+20);
 			frame.add(panel[i][e]);
+			
+			labe[i][e] = new JLabel();
+			labe[i][e].setSize(100, 100);
+			labe[i][e].setText(String.valueOf(0));
+			labe[i][e].setFont(new Font("Arial", Font.PLAIN, 80));
+			labe[i][e].setForeground(Color.DARK_GRAY);
+			panel[i][e].add(labe[i][e]);
 			}
 		}
+		
+		
 		
 	}
 	
@@ -76,7 +86,7 @@ public class Interface extends Deplacement{
 
 		@Override
         public void actionPerformed(ActionEvent e) {
-            joueur1.initialisation(x);
+            joueur1.initialisation(6);
             
         }
     };
@@ -194,21 +204,20 @@ public class Interface extends Deplacement{
 
 		return "<html><center>Bienvenue dans notre 2048 Perso"
 				+ "<br>en JAVA !"
-				+ "<br>© Tristan Pestiaux"
+				+ "<br>Â© Tristan Pestiaux"
 				+ "<br> Robin Paquet"
 				+ "<br> Ludo Van Den Dorpe</center></html>";
 	}
 public static void main(String[] args) {
 	
-	
     new Interface("");
 
 	
     System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
-			+ " ©Tristan Pestiaux\n"
+			+ " Â©Tristan Pestiaux\n"
 			+ "  Robin Paquet\n"
 			+ "  Ludo Van Den Dorpe\n"
-			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et dÃ©marrer le 2048\n");
+			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et dÃƒÂ©marrer le 2048\n");
     
 
 	}
