@@ -5,7 +5,6 @@ import java.util.Random;
 public class Plateau extends Joueur {
 
 	public Plateau() {
-
 	}
 
 	public void deplacement() {
@@ -104,10 +103,10 @@ public class Plateau extends Joueur {
 		}
 		if(estGagner) {
 			System.out.println("score : " + score + "\n");
-			System.out.println("Gagné !");
+			System.out.println("GagnÃ© !");
 		}else if(estPerdu) {
 			System.out.println("score : " + score + "\n");
-			System.out.println("Perdu !\n appuyer sur enter pour redémarrer");
+			System.out.println("Perdu !\n appuyer sur enter pour redÃ©marrer");
 		}else {
 		System.out.println("score : " + score + "\n");
 		System.out.println(affi);
