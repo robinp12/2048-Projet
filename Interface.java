@@ -77,7 +77,7 @@ public class Interface extends Deplacement{
 					frame.add(tuiles[i][e]);
 					
 					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(valeur[6]));
+					numeroCase[i][e].setText(String.valueOf(valeur[5]));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-5*x));
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
