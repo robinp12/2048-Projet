@@ -1,117 +1,241 @@
 package jeu;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
+import javax.swing.JSlider;
 
 public class Interface extends Deplacement{
-	private static final long serialVersionUID = 1L;
+	
 	Plateau joueur1 = new Plateau();
 	int x = joueur1.getDimension();
-
-	JFrame frame = new JFrame("Projet 2048");
+	
+	JFrame frame;
+	JPanel tuiles [][];
+	JLabel numeroCase [][];
+	
+	JLabel labelTitre;
+	JLabel score;
+	JLabel nombreCaseLabel;
+	JSlider nombreCaseSlider;
+	JButton bouttonDemarrer;
+	JButton bouttonCredit;
+	JDialog fenetreCredit;
+	
+	JButton bouttonHaut;
+	JButton bouttonBas;
+	JButton bouttonGauche;
+	JButton bouttonDroite;
 	
 	public void tuiles(int x) {	
 		
 		Color couleurNoir = new Color(180,180,180);
-		JPanel [][] panel = new JPanel[x][x];
+		int valeur[] = {2,4,8,16,32,64,128};
+		tuiles = new JPanel[x][x];
+		numeroCase = new JLabel[x][x];
 		for(int i= 0; i<x; i++) {
 			for(int e= 0; e<x; e++) {
 				switch(x) {
 				case 2 :
-					panel[i][e] = new JPanel();
-					panel[i][e].setSize(200,200);
-					panel[i][e].setBackground(Color.orange);
-					panel[i][e].setLocation(210*i+30, 210 * e+30);
-					frame.add(panel[i][e]);
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(200,200);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(210*i+30, 210 * e+30);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(0));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-10*x));
+					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 3 : 
-					panel[i][e] = new JPanel();
-					panel[i][e].setSize(130,130);
-					panel[i][e].setBackground(Color.orange);
-					panel[i][e].setLocation(140*i+25, 140 * e+25);
-					frame.add(panel[i][e]);
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(130,130);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(140*i+25, 140 * e+25);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(0));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-10*x));
+					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 4 : 
-					panel[i][e] = new JPanel();
-					panel[i][e].setSize(100,100);
-					panel[i][e].setBackground(Color.orange);
-					panel[i][e].setLocation(110*i+20, 110 * e+20);
-					frame.add(panel[i][e]);
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(100,100);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(110*i+20, 110 * e+20);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(valeur[6]));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-5*x));
+					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 5 : 
-					panel[i][e] = new JPanel();
-					panel[i][e].setSize(80,80);
-					panel[i][e].setBackground(Color.orange);
-					panel[i][e].setLocation(90*i+20, 90 * e+20);
-					frame.add(panel[i][e]);
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(80,80);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(90*i+20, 90 * e+20);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(0));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-3*x));
+					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 6 :
-					panel[i][e] = new JPanel();
-					panel[i][e].setSize(65,65);
-					panel[i][e].setBackground(Color.orange);
-					panel[i][e].setLocation(75*i+15, 75 * e+15);
-					frame.add(panel[i][e]);
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(65,65);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(75*i+15, 75 * e+15);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(0));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-3*x));
+					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 7 :
-					panel[i][e] = new JPanel();
-					panel[i][e].setSize(55,55);
-					panel[i][e].setBackground(Color.orange);
-					panel[i][e].setLocation(65*i+12, 65 * e+12);
-					frame.add(panel[i][e]);
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(55,55);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(62*i+10, 62 * e+10);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(0));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-2*x));
+					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 8 :
-					panel[i][e] = new JPanel();
-					panel[i][e].setSize(45,45);
-					panel[i][e].setBackground(Color.orange);
-					panel[i][e].setLocation(55*i+10, 55 * e+10);
-					frame.add(panel[i][e]);
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(46,46);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(53*i+12, 53* e+12);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(0));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-2*x));
+					tuiles[i][e].add(numeroCase[i][e]);
 					break;
-				case 9 : ;	
+				case 9 : 
+					tuiles[i][e] = new JPanel();
+					tuiles[i][e].setSize(42,42);
+					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setLocation(50*i+12, 50* e+12);
+					frame.add(tuiles[i][e]);
+					
+					numeroCase[i][e] = new JLabel();
+					numeroCase[i][e].setText(String.valueOf(0));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-x));
+					tuiles[i][e].add(numeroCase[i][e]);
+					break;	
 				}
 			}
 		}
 	}
-	
-	public void dPad(int position) {
-		 JButton upBut = new JButton("\u21e7");
-	        upBut.setSize(50, 40);
-	        upBut.setLocation(540, 250+position);
-	        upBut.addActionListener(actionUp);
-	        upBut.setBackground(Color.LIGHT_GRAY);
-	        upBut.setForeground(Color.BLUE);
-	        frame.add(upBut);
+	public void panneauDroit(int position) {
+			
+			labelTitre = new JLabel("2048");
+			labelTitre.setForeground(Color.ORANGE);
+			labelTitre.setSize(180,60);
+			labelTitre.setLocation(490, 20);
+			labelTitre.setFont(new Font("Arial", Font.BOLD, 70));
+	        frame.add(labelTitre);
 	        
-	        JButton downBut = new JButton("\u21e9");
-	        downBut.setSize(50, 40);
-	        downBut.setLocation(540, 300+position);
-	        downBut.addActionListener(actionDown);
-	        downBut.setBackground(Color.LIGHT_GRAY);
-	        downBut.setForeground(Color.BLUE);
-	        frame.add(downBut);
+	        score = new JLabel("Score: " + String.valueOf(0));
+	        score.setForeground(Color.ORANGE);
+	        score.setSize(180,60);
+	        score.setLocation(500, 75);
+	        score.setFont(new Font("Arial", Font.BOLD, 20));
+	        frame.add(score);
 	        
-	        JButton leftBut = new JButton("\u21e6");
-	        leftBut.setSize(50, 40);
-	        leftBut.setLocation(480, 300+position);
-	        leftBut.addActionListener(actionLeft);
-	        leftBut.setBackground(Color.LIGHT_GRAY);
-	        leftBut.setForeground(Color.BLUE);
-	        frame.add(leftBut);
+	        nombreCaseLabel = new JLabel("Nombre de case:(Par defaut 4)");
+	        nombreCaseLabel.setSize(180,60);
+	        nombreCaseLabel.setLocation(490, 100+position);
+	        nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 11));
+	        frame.add(nombreCaseLabel);
 	        
-	        JButton rightBut = new JButton("\u21e8");
-	        rightBut.setSize(50, 40);
-	        rightBut.setLocation(600, 300+position);
-	        rightBut.addActionListener(actionRight);
-	        rightBut.setBackground(Color.LIGHT_GRAY);
-	        rightBut.setForeground(Color.BLUE);
-	        frame.add(rightBut);
+	        
+	        
+	        nombreCaseSlider = new JSlider(JSlider.HORIZONTAL, 2, 9, x);
+	        nombreCaseSlider.setMinorTickSpacing(2);  
+	        nombreCaseSlider.setMajorTickSpacing(9);
+	        nombreCaseSlider.setLocation(490, 140+position);
+	        nombreCaseSlider.setSize(155,20);
+	        nombreCaseSlider.addChangeListener(null);
+	        frame.add(nombreCaseSlider);
+	        
+			bouttonDemarrer = new JButton("Demarrer");
+			bouttonDemarrer.setSize(150,40);
+	        bouttonDemarrer.setLocation(490, 180+position);
+	        bouttonDemarrer.setBackground(Color.LIGHT_GRAY);
+	        bouttonDemarrer.addActionListener(actionDemarrer);
+			frame.add(bouttonDemarrer);
+			
+			bouttonCredit = new JButton("Credit");
+			bouttonCredit.setSize(150,40);
+	        bouttonCredit.setLocation(490, 230+position);
+	        bouttonCredit.setBackground(Color.LIGHT_GRAY);
+	        bouttonCredit.addActionListener(actionCredit);
+	        frame.add(bouttonCredit);
+        
+			bouttonHaut = new JButton("\u21e7");
+	        bouttonHaut.setSize(50, 40);
+	        bouttonHaut.setLocation(540, 300+position);
+	        bouttonHaut.addActionListener(actionHaut);
+	        bouttonHaut.setBackground(Color.LIGHT_GRAY);
+	        bouttonHaut.setForeground(Color.BLUE);
+	        frame.add(bouttonHaut);
+	        
+	        bouttonBas = new JButton("\u21e9");
+	        bouttonBas.setSize(50, 40);
+	        bouttonBas.setLocation(540, 350+position);
+	        bouttonBas.addActionListener(actionBas);
+	        bouttonBas.setBackground(Color.LIGHT_GRAY);
+	        bouttonBas.setForeground(Color.BLUE);
+	        frame.add(bouttonBas);
+	        
+	        bouttonGauche = new JButton("\u21e6");
+	        bouttonGauche.setSize(50, 40);
+	        bouttonGauche.setLocation(480, 350+position);
+	        bouttonGauche.addActionListener(actionGauche);
+	        bouttonGauche.setBackground(Color.LIGHT_GRAY);
+	        bouttonGauche.setForeground(Color.BLUE);
+	        frame.add(bouttonGauche);
+	        
+	        bouttonDroite = new JButton("\u21e8");
+	        bouttonDroite.setSize(50, 40);
+	        bouttonDroite.setLocation(600, 350+position);
+	        bouttonDroite.addActionListener(actionDroite);
+	        bouttonDroite.setBackground(Color.LIGHT_GRAY);
+	        bouttonDroite.setForeground(Color.BLUE);
+	        frame.add(bouttonDroite);
+	}
+	public String texte() {
+		return "<html><center>Bienvenue dans notre Projet 2048"
+				+ "<br>en JAVA !"
+				+ "<br> Tristan Pestiaux"
+				+ "<br> Robin Paquet"
+				+ "<br> Ludo Van Den Dorpe</center></html>";
+	}
+	public void creditConsole() {
+		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
+				+ " ©Tristan Pestiaux\n"
+				+ "  Robin Paquet\n"
+				+ "  Ludo Van Den Dorpe\n"
+				+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et demarrer le 2048\n");
 	}
 	
 	AbstractAction actionDemarrer = new AbstractAction() {
@@ -130,18 +254,18 @@ public class Interface extends Deplacement{
 
 		@Override
         public void actionPerformed(ActionEvent e) {
-            JFrame frameCredit = new JFrame("Credit");
-            JLabel labelCredit = new JLabel();
-            frameCredit.setSize(240, 280);
-            frameCredit.setVisible(true);
-            frameCredit.setLocationRelativeTo(null);
-            frameCredit.add(labelCredit);
-            labelCredit.setText(texte());
-            labelCredit.setFont(new Font("Arial", Font.PLAIN, 15));
+            fenetreCredit = new JDialog();
+            fenetreCredit.setTitle("Credit©");
+            fenetreCredit.setSize(240, 200);
+            fenetreCredit.setLocationRelativeTo(null);
+            fenetreCredit.setLayout(new GridBagLayout());
+            fenetreCredit.setResizable(false);
+            fenetreCredit.add(new JLabel(texte()));
+            fenetreCredit.setVisible(true);
         }
     };
     
-    AbstractAction actionUp = new AbstractAction() {
+    AbstractAction actionHaut = new AbstractAction() {
 
 		private static final long serialVersionUID = 1L;
 
@@ -153,7 +277,7 @@ public class Interface extends Deplacement{
 			joueur1.affichageTableau();
         }
     };    
-    AbstractAction actionDown = new AbstractAction() {
+    AbstractAction actionBas = new AbstractAction() {
 
 		private static final long serialVersionUID = 1L;
 
@@ -165,7 +289,7 @@ public class Interface extends Deplacement{
 			joueur1.affichageTableau();
         }
     };
-    AbstractAction actionLeft = new AbstractAction() {
+    AbstractAction actionGauche = new AbstractAction() {
 
 		private static final long serialVersionUID = 1L;
 
@@ -177,7 +301,7 @@ public class Interface extends Deplacement{
 			joueur1.affichageTableau();
         }
     };
-    AbstractAction actionRight = new AbstractAction() {
+    AbstractAction actionDroite = new AbstractAction() {
 
 		private static final long serialVersionUID = 1L;
 
@@ -190,71 +314,30 @@ public class Interface extends Deplacement{
         }
     };
     
-	public Interface(String s) {
-		super(s);
-		frame.setVisible(true);
+	public Interface() {
+		frame = new JFrame("Projet 2048");
 		frame.setSize(700,515);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.addKeyListener(this);
-		
+		frame.setLayout(null);
+		frame.setVisible(true);
 		
 		tuiles(x);
-		
-		JSeparator separateurHor = new JSeparator();
-		frame.add(separateurHor);
-		
-		JLabel label = new JLabel("2048");
-		label.setForeground(Color.ORANGE);
-        label.setSize(200,100);
-        label.setLocation(490, 30);
-        label.setFont(new Font("Arial", Font.BOLD, 70));
-        frame.add(label);
         
-        JSeparator separateurVer1 = new JSeparator(getHeight());
-		frame.add(separateurVer1);
+		panneauDroit(20);
 		
-		JButton demarrer = new JButton("Demarrer");
-		demarrer.setSize(150,40);
-        demarrer.setLocation(490, 150);
-        demarrer.setBackground(Color.LIGHT_GRAY);
-        demarrer.addActionListener(actionDemarrer);
-		frame.add(demarrer);
-		
-		JButton credit = new JButton("Credit");
-		credit.setSize(150,40);
-        credit.setLocation(490, 200);
-        credit.setBackground(Color.LIGHT_GRAY);
-        credit.addActionListener(actionCredit);
-        frame.add(credit);
-        
-        JSeparator separateurVer2 = new JSeparator(getHeight());
-		frame.add(separateurVer2);
-        
-		dPad(100);
-        
-	}
-	public String texte() {
-
-		return "<html><center>Bienvenue dans notre 2048 Perso"
-				+ "<br>en JAVA !"
-				+ "<br>© Tristan Pestiaux"
-				+ "<br> Robin Paquet"
-				+ "<br> Ludo Van Den Dorpe</center></html>";
-	}
-public static void main(String[] args) {
+		creditConsole();
 	
-	
-    new Interface("");
-
-	
-    System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n"
-			+ " ©Tristan Pestiaux\n"
-			+ "  Robin Paquet\n"
-			+ "  Ludo Van Den Dorpe\n"
-			+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et dÃ©marrer le 2048\n");
-    
-
 	}
-
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+	
+		        public void run() {	
+		              new Interface();
+		        }
+		});
+	}
 }
