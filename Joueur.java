@@ -1,14 +1,14 @@
 package jeu;
 
 
-public abstract class Joueur {
+public class Joueur {
 	/*
 	 * private int id; private float timer;
 	 */
 	
 	protected int score = 0;
 	protected boolean estBloquer = true;
-	protected int dimension = 4;
+	protected int dimension = 4;		/* Changer le nombre de case ici seulement */
 	protected int[][] tableau = new int[10][10];
 	
 
