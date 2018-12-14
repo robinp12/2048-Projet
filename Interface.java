@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -13,33 +16,38 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class Interface extends Deplacement{
+public class Interface extends Deplacement implements ChangeListener{
 	
 	Plateau joueur1 = new Plateau();
 	int x = joueur1.getDimension();
 	
-	JFrame frame;
-	JPanel tuiles [][];
-	JLabel numeroCase [][];
+	private JFrame frame;
+	private JPanel tuiles [][];
+	private JLabel numeroCase [][];
 	
-	JLabel labelTitre;
-	JLabel score;
-	JLabel nombreCaseLabel;
-	JSlider nombreCaseSlider;
-	JButton bouttonDemarrer;
-	JButton bouttonCredit;
-	JDialog fenetreCredit;
+	private JLabel labelTitre;
+	private JLabel score;
+	private JLabel timerLab;
+	Timer timer;
+	private JLabel nombreCaseLabel;
+	private JSlider nombreCaseSlider;
+	private JButton bouttonDemarrer;
+	private JButton bouttonCredit;
+	private JDialog fenetreCredit;
 	
-	JButton bouttonHaut;
-	JButton bouttonBas;
-	JButton bouttonGauche;
-	JButton bouttonDroite;
+	private JButton bouttonHaut;
+	private JButton bouttonBas;
+	private JButton bouttonGauche;
+	private JButton bouttonDroite;
 	
 	public void tuiles(int x) {	
 		
-		Color couleurNoir = new Color(180,180,180);
-		int valeur[] = {2,4,8,16,32,64,128};
+		Color couleurGris = new Color(180,180,180);
+		int valeur[] = {0,2,4,8,16,32,64,128};
 		tuiles = new JPanel[x][x];
 		numeroCase = new JLabel[x][x];
 		for(int i= 0; i<x; i++) {
@@ -48,7 +56,7 @@ public class Interface extends Deplacement{
 				case 2 :
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(200,200);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(210*i+30, 210 * e+30);
 					frame.add(tuiles[i][e]);
 					
@@ -60,7 +68,7 @@ public class Interface extends Deplacement{
 				case 3 : 
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(130,130);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(140*i+25, 140 * e+25);
 					frame.add(tuiles[i][e]);
 					
@@ -72,19 +80,19 @@ public class Interface extends Deplacement{
 				case 4 : 
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(100,100);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(110*i+20, 110 * e+20);
 					frame.add(tuiles[i][e]);
 					
 					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(valeur[5]));
+					numeroCase[i][e].setText(String.valueOf(valeur[0]));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-5*x));
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 5 : 
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(80,80);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(90*i+20, 90 * e+20);
 					frame.add(tuiles[i][e]);
 					
@@ -96,7 +104,7 @@ public class Interface extends Deplacement{
 				case 6 :
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(65,65);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(75*i+15, 75 * e+15);
 					frame.add(tuiles[i][e]);
 					
@@ -108,7 +116,7 @@ public class Interface extends Deplacement{
 				case 7 :
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(55,55);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(62*i+10, 62 * e+10);
 					frame.add(tuiles[i][e]);
 					
@@ -120,7 +128,7 @@ public class Interface extends Deplacement{
 				case 8 :
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(46,46);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(53*i+12, 53* e+12);
 					frame.add(tuiles[i][e]);
 					
@@ -132,7 +140,7 @@ public class Interface extends Deplacement{
 				case 9 : 
 					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(42,42);
-					tuiles[i][e].setBackground(couleurNoir);
+					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(50*i+12, 50* e+12);
 					frame.add(tuiles[i][e]);
 					
@@ -153,13 +161,39 @@ public class Interface extends Deplacement{
 			labelTitre.setLocation(490, 20);
 			labelTitre.setFont(new Font("Arial", Font.BOLD, 70));
 	        frame.add(labelTitre);
-	        
-	        score = new JLabel("Score: " + String.valueOf(0));
+
+	        score = new JLabel("Score: " + joueur1.getScore());
 	        score.setForeground(Color.ORANGE);
 	        score.setSize(180,60);
 	        score.setLocation(500, 75);
 	        score.setFont(new Font("Arial", Font.BOLD, 20));
 	        frame.add(score);
+	        
+									        timer = new Timer(20, new ActionListener() {
+												
+												@Override
+												public void actionPerformed(ActionEvent e) {
+													score.setText("Score: " + joueur1.getScore());
+													
+													Calendar cal = new GregorianCalendar();
+												 	int milli = cal.get(Calendar.MILLISECOND);
+											        int second = cal.get(Calendar.SECOND);
+											        int min = cal.get(Calendar.MINUTE);
+											        int hour = cal.get(Calendar.HOUR);
+											       
+											        String s= (hour + ":" + min + ":" + second + ":" + milli);
+											        timerLab.setText(s);
+												}
+											});
+									        timer.start(); 
+									        
+									        timerLab = new JLabel();
+									        timerLab.setForeground(Color.RED);
+									        timerLab.setSize(180,60);
+									        timerLab.setLocation(500, 100);
+									        timerLab.setFont(new Font("Arial", Font.BOLD, 15));
+									        frame.add(timerLab);
+
 	        
 	        nombreCaseLabel = new JLabel("Nombre de case:(Par defaut 4)");
 	        nombreCaseLabel.setSize(180,60);
@@ -167,14 +201,12 @@ public class Interface extends Deplacement{
 	        nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 	        frame.add(nombreCaseLabel);
 	        
-	        
-	        
 	        nombreCaseSlider = new JSlider(JSlider.HORIZONTAL, 2, 9, x);
 	        nombreCaseSlider.setMinorTickSpacing(2);  
 	        nombreCaseSlider.setMajorTickSpacing(9);
+	        nombreCaseSlider.addChangeListener(this);
 	        nombreCaseSlider.setLocation(490, 140+position);
 	        nombreCaseSlider.setSize(155,20);
-	        nombreCaseSlider.addChangeListener(null);
 	        frame.add(nombreCaseSlider);
 	        
 			bouttonDemarrer = new JButton("Demarrer");
@@ -316,7 +348,7 @@ public class Interface extends Deplacement{
     
 	public Interface() {
 		frame = new JFrame("Projet 2048");
-		frame.setSize(700,515);
+		frame.setSize(680,500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
@@ -339,5 +371,11 @@ public class Interface extends Deplacement{
 		              new Interface();
 		        }
 		});
+	}
+	@Override
+	public void stateChanged(ChangeEvent arg0) {
+		joueur1.setDimension(nombreCaseSlider.getValue());
+		System.out.println(joueur1.getDimension());
+		
 	}
 }
