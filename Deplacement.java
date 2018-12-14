@@ -3,17 +3,10 @@ package jeu;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
+public class Deplacement implements KeyListener{
 
-public class Deplacement extends JFrame implements KeyListener{
-
-	private static final long serialVersionUID = 1L;
 	
 	 Plateau joueur1 = new Plateau();
-
-	public Deplacement(String s) {
-    	super(s);
-    }
 
 	@Override
 	public void keyTyped(KeyEvent e) {
