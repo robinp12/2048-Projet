@@ -5,8 +5,14 @@ import java.awt.event.KeyListener;
 
 public class Deplacement implements KeyListener{
 
-	
 	 Plateau joueur1 = new Plateau();
+	 
+	 public void actionTableau(String direction, String dir) {
+		 System.out.println(direction);
+			joueur1.deplacement(dir);
+			joueur1.ajouterAleatoire();
+			joueur1.affichageTableau();
+	 }
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -18,37 +24,20 @@ public class Deplacement implements KeyListener{
 
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_LEFT) {
-			System.out.println("Gauche");
-			joueur1.deplacement("G");
-			joueur1.ajouterAleatoire();
-			joueur1.affichageTableau();
-
+			actionTableau("Gauche", "G");
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
-			System.out.println("Droite");
-			joueur1.deplacement("D");
-			joueur1.ajouterAleatoire();
-			joueur1.affichageTableau();
+			actionTableau("Gauche", "G");
 		}
 
 		if (key == KeyEvent.VK_UP) {
-			System.out.println("Haut");
-			joueur1.deplacement("H");
-			joueur1.ajouterAleatoire();
-			joueur1.affichageTableau();
+			actionTableau("Gauche", "G");
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
-			System.out.println("Bas");
-			joueur1.deplacement("B");
-			joueur1.ajouterAleatoire();
-			joueur1.affichageTableau();
+			actionTableau("Gauche", "G");
 		}
-		/*if (key == KeyEvent.VK_ENTER) {
-			System.out.println("Initialisation - Reset");
-			joueur1.initialisation(4);
-		}*/
 		if (key == KeyEvent.VK_NUMPAD2) {
 			System.out.println("Initialisation 2X2 - Reset");
 			joueur1.initialisation(2);
