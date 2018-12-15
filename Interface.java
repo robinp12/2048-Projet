@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.color.ColorSpace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -24,29 +23,39 @@ public class Interface extends Deplacement implements ChangeListener{
 	
 	Plateau joueur1 = new Plateau();
 	int x = joueur1.getDimension();
+	Color couleurGris = new Color(180,180,180);
 	
 	private JFrame frame;
 	private JPanel tuiles [][];
 	private JLabel numeroCase [][];
 	
 	private JLabel labelTitre;
-	private JLabel score;
-	private JLabel timerLab;
-	Timer timer;
+	private JLabel labelScore;
+	private JLabel labelTemps;
+	private Timer timer;
 	private JLabel nombreCaseLabel;
 	private JSlider nombreCaseSlider;
 	private JButton bouttonDemarrer;
 	private JButton bouttonCredit;
 	private JDialog fenetreCredit;
 	
-	private JButton bouttonHaut;
+	private JButton bouttonHaut; 
 	private JButton bouttonBas;
 	private JButton bouttonGauche;
 	private JButton bouttonDroite;
 	
+	public void boiteDialogue(String titre, String texte) {
+		fenetreCredit = new JDialog();
+        fenetreCredit.setTitle(titre);
+        fenetreCredit.setSize(240, 200);
+        fenetreCredit.setLocationRelativeTo(null);
+        fenetreCredit.setLayout(new GridBagLayout());
+        fenetreCredit.setResizable(false);
+        fenetreCredit.add(new JLabel(texte));
+        fenetreCredit.setVisible(true);
+	}
 	public void tuiles(int x) {	
 		
-		Color couleurGris = new Color(180,180,180);
 		int valeur[] = {0,2,4,8,16,32,64,128};
 		tuiles = new JPanel[x][x];
 		numeroCase = new JLabel[x][x];
@@ -82,8 +91,8 @@ public class Interface extends Deplacement implements ChangeListener{
 					tuiles[i][e].setSize(100,100);
 					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(110*i+20, 110 * e+20);
-					frame.add(tuiles[i][e]);
 					
+					frame.add(tuiles[i][e]);
 					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur[0]));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-5*x));
@@ -153,7 +162,7 @@ public class Interface extends Deplacement implements ChangeListener{
 			}
 		}
 	}
-	public void panneauDroit(int position) {
+	public void panneauDroit() {
 			
 			labelTitre = new JLabel("2048");
 			labelTitre.setForeground(Color.ORANGE);
@@ -162,42 +171,66 @@ public class Interface extends Deplacement implements ChangeListener{
 			labelTitre.setFont(new Font("Arial", Font.BOLD, 70));
 	        frame.add(labelTitre);
 
-	        score = new JLabel("Score: " + joueur1.getScore());
-	        score.setForeground(Color.ORANGE);
-	        score.setSize(180,60);
-	        score.setLocation(500, 75);
-	        score.setFont(new Font("Arial", Font.BOLD, 20));
-	        frame.add(score);
+	        labelScore = new JLabel("Score: ");
+	        labelScore.setForeground(couleurGris);
+	        labelScore.setSize(180,60);
+	        labelScore.setLocation(490, 71);
+	        labelScore.setFont(new Font("Arial", Font.BOLD, 25));
+	        frame.add(labelScore);
 	        
-									        timer = new Timer(20, new ActionListener() {
-												
-												@Override
-												public void actionPerformed(ActionEvent e) {
-													score.setText("Score: " + joueur1.getScore());
-													
-													Calendar cal = new GregorianCalendar();
-												 	int milli = cal.get(Calendar.MILLISECOND);
-											        int second = cal.get(Calendar.SECOND);
-											        int min = cal.get(Calendar.MINUTE);
-											        int hour = cal.get(Calendar.HOUR);
-											       
-											        String s= (hour + ":" + min + ":" + second + ":" + milli);
-											        timerLab.setText(s);
-												}
-											});
-									        timer.start(); 
+	        timer = new Timer(10, new ActionListener() {
+				int miliseconde = 0;
+				int seconde = 0; 
+				int minute = 0;
+				int rand = 0;
+				int randmax = 255;
+				@Override 
+				public void actionPerformed(ActionEvent e) {
+					miliseconde++;
+					if(miliseconde == 60)
+					{
+						miliseconde = 0;
+						seconde++;
+					}
+					if(seconde == 60)
+					{
+						seconde = 0;
+						minute++;
+					}
+					if(minute == 60)
+					{
+						miliseconde = 0;
+						seconde = 0;
+						minute = 0;
+						boiteDialogue("Message","Vous avez perdu");
+					}
+					labelScore.setText("Score: " + joueur1.getScore());
+					labelTemps.setText("Temps: " + minute + ":" + seconde + ":" + miliseconde);
+					joueur1.setDimension(nombreCaseSlider.getValue());
+					//tuiles(x);
+					if(rand < 255 && randmax > 0) {
+					Color rain = new Color(rand++,rand++/2,randmax--);
+					labelTitre.setForeground(rain);
+					}
+					else {
+						labelTitre.setForeground(Color.orange);
+					}
+					
+				}
+			});
 									        
-									        timerLab = new JLabel();
-									        timerLab.setForeground(Color.RED);
-									        timerLab.setSize(180,60);
-									        timerLab.setLocation(500, 100);
-									        timerLab.setFont(new Font("Arial", Font.BOLD, 15));
-									        frame.add(timerLab);
+	        labelTemps = new JLabel();
+	        labelTemps.setText("Temps: ");
+	        labelTemps.setForeground(Color.RED);
+	        labelTemps.setSize(180,60);
+	        labelTemps.setLocation(490, 105);
+	        labelTemps.setFont(new Font("Arial", Font.BOLD, 15));
+	        frame.add(labelTemps);
 
 	        
 	        nombreCaseLabel = new JLabel("Nombre de case:(Par defaut 4)");
 	        nombreCaseLabel.setSize(180,60);
-	        nombreCaseLabel.setLocation(490, 100+position);
+	        nombreCaseLabel.setLocation(490, 140);
 	        nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 11));
 	        frame.add(nombreCaseLabel);
 	        
@@ -205,51 +238,51 @@ public class Interface extends Deplacement implements ChangeListener{
 	        nombreCaseSlider.setMinorTickSpacing(2);  
 	        nombreCaseSlider.setMajorTickSpacing(9);
 	        nombreCaseSlider.addChangeListener(this);
-	        nombreCaseSlider.setLocation(490, 140+position);
+	        nombreCaseSlider.setLocation(490, 185);
 	        nombreCaseSlider.setSize(155,20);
 	        frame.add(nombreCaseSlider);
 	        
-			bouttonDemarrer = new JButton("Demarrer");
+			bouttonDemarrer = new JButton("(Re)Initialiser");
 			bouttonDemarrer.setSize(150,40);
-	        bouttonDemarrer.setLocation(490, 180+position);
+	        bouttonDemarrer.setLocation(490, 225);
 	        bouttonDemarrer.setBackground(Color.LIGHT_GRAY);
 	        bouttonDemarrer.addActionListener(actionDemarrer);
 			frame.add(bouttonDemarrer);
 			
 			bouttonCredit = new JButton("Credit");
 			bouttonCredit.setSize(150,40);
-	        bouttonCredit.setLocation(490, 230+position);
+	        bouttonCredit.setLocation(490, 275);
 	        bouttonCredit.setBackground(Color.LIGHT_GRAY);
 	        bouttonCredit.addActionListener(actionCredit);
 	        frame.add(bouttonCredit);
         
 			bouttonHaut = new JButton("\u21e7");
-	        bouttonHaut.setSize(50, 40);
-	        bouttonHaut.setLocation(540, 300+position);
+	        bouttonHaut.setSize(45, 35);
+	        bouttonHaut.setLocation(542, 330);
 	        bouttonHaut.addActionListener(actionHaut);
 	        bouttonHaut.setBackground(Color.LIGHT_GRAY);
 	        bouttonHaut.setForeground(Color.BLUE);
 	        frame.add(bouttonHaut);
 	        
 	        bouttonBas = new JButton("\u21e9");
-	        bouttonBas.setSize(50, 40);
-	        bouttonBas.setLocation(540, 350+position);
+	        bouttonBas.setSize(45, 35);
+	        bouttonBas.setLocation(542, 370);
 	        bouttonBas.addActionListener(actionBas);
 	        bouttonBas.setBackground(Color.LIGHT_GRAY);
 	        bouttonBas.setForeground(Color.BLUE);
 	        frame.add(bouttonBas);
 	        
 	        bouttonGauche = new JButton("\u21e6");
-	        bouttonGauche.setSize(50, 40);
-	        bouttonGauche.setLocation(480, 350+position);
+	        bouttonGauche.setSize(46, 35);
+	        bouttonGauche.setLocation(490, 370);
 	        bouttonGauche.addActionListener(actionGauche);
 	        bouttonGauche.setBackground(Color.LIGHT_GRAY);
 	        bouttonGauche.setForeground(Color.BLUE);
 	        frame.add(bouttonGauche);
 	        
 	        bouttonDroite = new JButton("\u21e8");
-	        bouttonDroite.setSize(50, 40);
-	        bouttonDroite.setLocation(600, 350+position);
+	        bouttonDroite.setSize(46, 35);
+	        bouttonDroite.setLocation(592, 370);
 	        bouttonDroite.addActionListener(actionDroite);
 	        bouttonDroite.setBackground(Color.LIGHT_GRAY);
 	        bouttonDroite.setForeground(Color.BLUE);
@@ -277,7 +310,7 @@ public class Interface extends Deplacement implements ChangeListener{
 		@Override
         public void actionPerformed(ActionEvent e) {
             joueur1.initialisation(x);
-            
+            timer.start();             
         }
     };
     AbstractAction actionCredit = new AbstractAction() {
@@ -286,14 +319,7 @@ public class Interface extends Deplacement implements ChangeListener{
 
 		@Override
         public void actionPerformed(ActionEvent e) {
-            fenetreCredit = new JDialog();
-            fenetreCredit.setTitle("Credit©");
-            fenetreCredit.setSize(240, 200);
-            fenetreCredit.setLocationRelativeTo(null);
-            fenetreCredit.setLayout(new GridBagLayout());
-            fenetreCredit.setResizable(false);
-            fenetreCredit.add(new JLabel(texte()));
-            fenetreCredit.setVisible(true);
+			boiteDialogue("Credit©",texte());
         }
     };
     
@@ -352,13 +378,13 @@ public class Interface extends Deplacement implements ChangeListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
-		frame.addKeyListener(this);
+		frame.addKeyListener(null);
 		frame.setLayout(null);
 		frame.setVisible(true);
 		
-		tuiles(x);
+        tuiles(x);
         
-		panneauDroit(20);
+		panneauDroit();
 		
 		creditConsole();
 	
@@ -366,7 +392,6 @@ public class Interface extends Deplacement implements ChangeListener{
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-	
 		        public void run() {	
 		              new Interface();
 		        }
