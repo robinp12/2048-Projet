@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.color.ColorSpace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,119 +43,80 @@ public class Interface extends Deplacement implements ChangeListener{
 	private JButton bouttonGauche;
 	private JButton bouttonDroite;
 	
-	public void boiteDialogue(String titre, String texte) {
-		fenetreCredit = new JDialog();
-        fenetreCredit.setTitle(titre);
-        fenetreCredit.setSize(240, 200);
-        fenetreCredit.setLocationRelativeTo(null);
-        fenetreCredit.setLayout(new GridBagLayout());
-        fenetreCredit.setResizable(false);
-        fenetreCredit.add(new JLabel(texte));
-        fenetreCredit.setVisible(true);
-	}
-	public void tuiles(int x) {	
+	@Override
+	public void stateChanged(ChangeEvent arg0) {
+		joueur1.setDimension(nombreCaseSlider.getValue());
+		System.out.println(joueur1.getDimension());
 		
+	}
+	
+	public void tuiles(int nombreTuiles) {	
+		
+		int i;
+		int e;
 		int valeur[] = {0,2,4,8,16,32,64,128};
-		tuiles = new JPanel[x][x];
-		numeroCase = new JLabel[x][x];
-		for(int i= 0; i<x; i++) {
-			for(int e= 0; e<x; e++) {
-				switch(x) {
-				case 2 :
+		tuiles = new JPanel[nombreTuiles][nombreTuiles];
+		numeroCase = new JLabel[nombreTuiles][nombreTuiles];
+	
+		for(i= 0; i<nombreTuiles; i++) {
+			for(e= 0; e<nombreTuiles; e++) {
+				
 					tuiles[i][e] = new JPanel();
-					tuiles[i][e].setSize(200,200);
 					tuiles[i][e].setBackground(couleurGris);
-					tuiles[i][e].setLocation(210*i+30, 210 * e+30);
 					frame.add(tuiles[i][e]);
 					
 					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(0));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-10*x));
+					numeroCase[i][e].setText(String.valueOf(valeur[1]));
 					tuiles[i][e].add(numeroCase[i][e]);
+					
+				switch(nombreTuiles) {
+				case 2 :
+					tuiles[i][e].setSize(200,200);
+					tuiles[i][e].setLocation(210*i+30, 210 * e+30);
+					
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-10*nombreTuiles));
 					break;
 				case 3 : 
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(130,130);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(140*i+25, 140 * e+25);
-					frame.add(tuiles[i][e]);
 					
-					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(0));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-10*x));
-					tuiles[i][e].add(numeroCase[i][e]);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-10*nombreTuiles));
 					break;
 				case 4 : 
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(100,100);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(110*i+20, 110 * e+20);
 					
-					frame.add(tuiles[i][e]);
-					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(valeur[0]));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-5*x));
-					tuiles[i][e].add(numeroCase[i][e]);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-5*nombreTuiles));
 					break;
 				case 5 : 
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(80,80);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(90*i+20, 90 * e+20);
-					frame.add(tuiles[i][e]);
 					
-					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(0));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-3*x));
-					tuiles[i][e].add(numeroCase[i][e]);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-3*nombreTuiles));
 					break;
 				case 6 :
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(65,65);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(75*i+15, 75 * e+15);
-					frame.add(tuiles[i][e]);
 					
-					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(0));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-3*x));
-					tuiles[i][e].add(numeroCase[i][e]);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-3*nombreTuiles));
 					break;
 				case 7 :
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(55,55);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(62*i+10, 62 * e+10);
-					frame.add(tuiles[i][e]);
 					
-					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(0));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-2*x));
-					tuiles[i][e].add(numeroCase[i][e]);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-2*nombreTuiles));
 					break;
 				case 8 :
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(46,46);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(53*i+12, 53* e+12);
-					frame.add(tuiles[i][e]);
 					
-					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(0));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-2*x));
-					tuiles[i][e].add(numeroCase[i][e]);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-2*nombreTuiles));
 					break;
 				case 9 : 
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(42,42);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(50*i+12, 50* e+12);
-					frame.add(tuiles[i][e]);
 					
-					numeroCase[i][e] = new JLabel();
-					numeroCase[i][e].setText(String.valueOf(0));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-x));
-					tuiles[i][e].add(numeroCase[i][e]);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight()-nombreTuiles));
 					break;	
 				}
 			}
@@ -179,11 +139,11 @@ public class Interface extends Deplacement implements ChangeListener{
 	        frame.add(labelScore);
 	        
 	        timer = new Timer(10, new ActionListener() {
-				int miliseconde = 0;
-				int seconde = 0; 
-				int minute = 0;
-				int rand = 0;
-				int randmax = 255;
+				private int miliseconde = 0;
+				private int seconde = 0; 
+				private int minute = 0;
+				private int couleurMin = 0;
+				private int couleurMax = 255;
 				@Override 
 				public void actionPerformed(ActionEvent e) {
 					miliseconde++;
@@ -208,8 +168,8 @@ public class Interface extends Deplacement implements ChangeListener{
 					labelTemps.setText("Temps: " + minute + ":" + seconde + ":" + miliseconde);
 					joueur1.setDimension(nombreCaseSlider.getValue());
 					//tuiles(x);
-					if(rand < 255 && randmax > 0) {
-					Color rain = new Color(rand++,rand++/2,randmax--);
+					if(couleurMin < 255 && couleurMax > 0) {
+					Color rain = new Color(couleurMin++,couleurMin++/2,couleurMax--);
 					labelTitre.setForeground(rain);
 					}
 					else {
@@ -287,6 +247,16 @@ public class Interface extends Deplacement implements ChangeListener{
 	        bouttonDroite.setBackground(Color.LIGHT_GRAY);
 	        bouttonDroite.setForeground(Color.BLUE);
 	        frame.add(bouttonDroite);
+	}	
+	public void boiteDialogue(String titre, String texte) {
+		fenetreCredit = new JDialog();
+		fenetreCredit.setTitle(titre);
+		fenetreCredit.setSize(240, 200);
+		fenetreCredit.setLocationRelativeTo(null);
+		fenetreCredit.setLayout(new GridBagLayout());
+		fenetreCredit.setResizable(false);
+		fenetreCredit.add(new JLabel(texte));
+		fenetreCredit.setVisible(true);
 	}
 	public String texte() {
 		return "<html><center>Bienvenue dans notre Projet 2048"
@@ -397,10 +367,5 @@ public class Interface extends Deplacement implements ChangeListener{
 		        }
 		});
 	}
-	@Override
-	public void stateChanged(ChangeEvent arg0) {
-		joueur1.setDimension(nombreCaseSlider.getValue());
-		System.out.println(joueur1.getDimension());
-		
-	}
+	
 }
