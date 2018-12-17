@@ -1,16 +1,174 @@
-package jeu;
+package model;
 
+import java.util.Observable;
 import java.util.Random;
 
-public class Plateau extends Joueur {
+
+public class Plateau extends Observable {
+	protected int score = 0;
+	protected boolean estBloquer = true;	
+	protected int dimension = 4;
+	protected int[][] tableau = new int[10][10];
 
 	public Plateau() {
 	}
 
-	public void deplacement() {
-		
+	public int getScore() {
+		return score;
 	}
-	
+
+	public void setDimension(int x) {
+		dimension = x;
+		/*setChanged();
+		notifyObservers();*/
+
+	}
+
+	public int getDimension() {
+		return dimension;
+	}
+
+	public boolean getEstBloquer() {
+		return estBloquer;
+	}
+
+	public void setEstBloquer(boolean x) {
+		estBloquer = x;
+		setChanged();
+		notifyObservers();
+	}
+
+	public int getTableau(int i, int e) {
+		return tableau[i][e];
+	}
+
+	public int multiplication(int valeur) {
+		score += valeur * 10;
+		return valeur * 2;
+	}
+
+	public int division(int valeur) {
+		return valeur / 2;
+	}
+
+	public void deplacement(String choix) {
+		estBloquer = true;
+		int ligne;
+		int colonne;
+		int c = 0;
+		boolean[] changement = { false, false, false, false, false, false, false, false, false, false };
+		switch (choix) {
+		case "H":
+			while (c < dimension - 1) {
+				for (colonne = 0; colonne < dimension; colonne++) {
+					for (ligne = 1; ligne < dimension; ligne++) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne - 1][colonne] == 0) {
+								tableau[ligne - 1][colonne] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
+
+							} else if (tableau[ligne][colonne] == tableau[ligne - 1][colonne] && !changement[colonne]) {
+
+								tableau[ligne - 1][colonne] = multiplication(tableau[ligne - 1][colonne]);
+								tableau[ligne][colonne] = 0;
+								changement[colonne] = true;
+								estBloquer = false;
+
+							}
+
+						}
+					}
+
+				}
+				c++;
+			}
+			break;
+
+		case "B":
+
+			while (c < dimension - 1) {
+				for (colonne = 0; colonne < dimension; colonne++) {
+					for (ligne = dimension - 2; ligne >= 0; ligne--) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne + 1][colonne] == 0) {
+								tableau[ligne + 1][colonne] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
+							} else if (tableau[ligne][colonne] == tableau[ligne + 1][colonne] && !changement[colonne]) {
+								tableau[ligne + 1][colonne] = multiplication(tableau[ligne + 1][colonne]);
+								tableau[ligne][colonne] = 0;
+								changement[colonne] = true;
+								estBloquer = false;
+
+							}
+
+						}
+					}
+
+				}
+				c++;
+			}
+			break;
+		case "G":
+
+			while (c < dimension - 1) {
+				for (ligne = 0; ligne < dimension; ligne++) {
+					for (colonne = 1; colonne < dimension; colonne++) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne][colonne - 1] == 0) {
+								tableau[ligne][colonne - 1] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
+
+							} else if (tableau[ligne][colonne] == tableau[ligne][colonne - 1] && !changement[ligne]) {
+								tableau[ligne][colonne - 1] = multiplication(tableau[ligne][colonne - 1]);
+								tableau[ligne][colonne] = 0;
+								changement[ligne] = true;
+								estBloquer = false;
+
+							}
+
+						}
+					}
+
+				}
+				c++;
+			}
+			break;
+		case "D":
+
+			while (c < dimension - 1) {
+				for (ligne = 0; ligne < dimension; ligne++) {
+					for (colonne = dimension - 2; colonne >= 0; colonne--) {
+						if (tableau[ligne][colonne] != 0) {
+							if (tableau[ligne][colonne + 1] == 0) {
+								tableau[ligne][colonne + 1] = tableau[ligne][colonne];
+								tableau[ligne][colonne] = 0;
+								estBloquer = false;
+
+							} else if (tableau[ligne][colonne] == tableau[ligne][colonne + 1] && !changement[ligne]) {
+								tableau[ligne][colonne + 1] = multiplication(tableau[ligne][colonne + 1]);
+								tableau[ligne][colonne] = 0;
+								changement[ligne] = true;
+								estBloquer = false;
+
+							}
+
+						}
+					}
+
+				}
+				c++;
+			}
+			break;
+		}
+		ajouterAleatoire();
+		setChanged();
+		notifyObservers();
+
+	}
+
 	public int generer2ou4() {
 		Random r = new Random();
 		int n = r.nextInt(2);
@@ -21,9 +179,6 @@ public class Plateau extends Joueur {
 		}
 		return n;
 	}
-	
-
-	
 
 	public void initialisation(int x) {
 		setDimension(x);
@@ -37,81 +192,10 @@ public class Plateau extends Joueur {
 			}
 		}
 		ajouterAleatoire();
-		affichageTableau();
+		setChanged();
+		notifyObservers();
 	}
 
-	public void affichageTableau() {
-		Object affi = "";
-		 boolean estGagner = false;
-		 boolean estPerdu = false;
-		if(!estBloquer) {
-			int i;
-			for (i = 0; i < dimension; i++) {
-				for(int e = 0; e < dimension; e++) {
-					if(tableau[i][e] == 128) {
-						estGagner = true;
-					}
-				}
-				for(int a = 0; a < dimension; a++) {
-					affi += tableau[i][a] + "\t";
-				}
-				affi += "\n";
-				
-			}
-		}else {
-			int compteur = 0;
-			int compteur2 = 0;
-			
-			for(int i = 0; i < dimension; i++) {
-				for(int e = 0; e < dimension; e++) {
-					if(tableau[i][e] == 128) {
-						estGagner = true;
-						
-						estBloquer = true;
-
-					}
-					if(tableau[i][e] != 0) {
-							compteur++;
-						}
-					}
-				}
-			if(compteur == Math.pow(dimension, 2)) {
-			
-				for(int i = 0; i < dimension-1; i++) {
-					for(int e = 0; e < dimension; e++) {
-						if(tableau[i][e] != tableau[i+1][e]) {
-							compteur2++;	//max grandeur * grandeur-1			
-						}
-					}
-				}
-				for(int e = 0; e < dimension-1; e++) {
-					for(int i = 0; i < dimension; i++) {
-						if(tableau[i][e] != tableau[i][e+1]) {
-							compteur2++;	//max grandeur * grandeur-1			
-						}
-					}
-				}
-			}
-			
-			
-			
-			if(compteur2 == 2*dimension*(dimension-1)) {
-				estPerdu = true;
-				estBloquer = true;
-
-			}
-		}
-		if(estGagner) {
-			System.out.println("score : " + score + "\n");
-			System.out.println("GagnÃ© !");
-		}else if(estPerdu) {
-			System.out.println("score : " + score + "\n");
-			System.out.println("Perdu !\n appuyer sur enter pour redÃ©marrer");
-		}else {
-		System.out.println("score : " + score + "\n");
-		System.out.println(affi);
-		}
-	}
 	public void ajouterAleatoire() {
 		if (!estBloquer) {
 			int i, e;
@@ -125,4 +209,6 @@ public class Plateau extends Joueur {
 		}
 
 	}
+
+	
 }
