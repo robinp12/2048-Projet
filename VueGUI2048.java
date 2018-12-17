@@ -11,11 +11,11 @@ import java.util.Observable;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 import javax.swing.Timer;
 
 import controller.Controller2048;
@@ -26,16 +26,16 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	int x = model.getDimension();
 	Color couleurGris = new Color(180,180,180);
 
-	private JFrame frame;
-	private JPanel tuiles[][];
-	private JLabel numeroCase[][];
+	private JFrame 	frame;
+	private JPanel 	tuiles[][];
+	private JLabel 	numeroCase[][];
 
-	private JLabel labelTitre;
-	private JLabel labelScore;
-	private JLabel labelTemps;
-	private Timer timer;
-	private JLabel nombreCaseLabel;
-	private JSlider nombreCaseSlider;
+	private JLabel 	labelTitre;
+	private JLabel 	labelScore;
+	private JLabel	labelTemps;
+	private Timer	timer;
+	private JLabel 	nombreCaseLabel;
+	private JComboBox<Object> nombreCaseCombo;
 	private JButton bouttonDemarrer;
 	private JButton bouttonCredit;
 	private JDialog fenetreCredit;
@@ -54,6 +54,9 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		frame.setResizable(false);
 		frame.setLayout(null);
 		frame.setVisible(true);
+		
+		boiteDialogue("Comment jouer ?", "<html>D'abord choisissez le nombre de case pour jouer,"
+				+ "ensuite vous pouvez cliquer sur '(Re)Initialiser' et jouer avec les fleches.</html>");
 
 		panneauDroit();
 
@@ -62,7 +65,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 	@Override
 	public void affiche() {
-		x = model.getDimension();
 		tuiles(x);
 	}
 	@Override
@@ -304,12 +306,9 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					labelScore.setText("Score: " + model.getScore());
 					labelTemps.setText("Temps: " + minute + ":" + seconde + ":" + miliseconde);
 					
-					model.setDimension(nombreCaseSlider.getValue());
-					nombreCaseLabel.setText("Nombre de case: " + model.getDimension());
-					
 					if(couleurMin < 255 && couleurMax > 0) {
-					Color rain = new Color(couleurMin++,couleurMin++/2,couleurMax--);
-					labelTitre.setForeground(rain);
+						Color rain = new Color(couleurMin++,couleurMin++/2,couleurMax--/2);
+						labelTitre.setForeground(rain);
 					}
 					else {
 						labelTitre.setForeground(Color.orange);
@@ -318,10 +317,10 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				}
 			});
 	}
+	
 	public void panneauDroit() {
 
 		labelTitre = new JLabel("2048");
-		labelTitre.setForeground(Color.ORANGE);
 		labelTitre.setSize(180, 60);
 		labelTitre.setLocation(490, 20);
 		labelTitre.setFont(new Font("Arial", Font.BOLD, 70));
@@ -344,19 +343,28 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
         labelTemps.setFont(new Font("Arial", Font.BOLD, 15));
         frame.add(labelTemps);	
         
-        nombreCaseLabel = new JLabel("Nombre de case:(Par defaut 4)");
+        nombreCaseLabel = new JLabel("Nombre de case:");
 		nombreCaseLabel.setSize(180, 60);
-		nombreCaseLabel.setLocation(490, 140);
-		nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 11));
+		nombreCaseLabel.setLocation(490, 150);
+		nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.add(nombreCaseLabel);
 		
-
-		nombreCaseSlider = new JSlider(JSlider.HORIZONTAL, 2, 9, x);
-		nombreCaseSlider.setMinorTickSpacing(2);
-		nombreCaseSlider.setMajorTickSpacing(9);
-		nombreCaseSlider.setLocation(490, 185);
-		nombreCaseSlider.setSize(155, 20);
-		frame.add(nombreCaseSlider);
+		
+		String valeurNombreCase[] = {"2","3","4","5","6","7","8","9"};
+		nombreCaseCombo = new JComboBox<Object>(valeurNombreCase);
+		nombreCaseCombo.setLocation(590, 170);
+		nombreCaseCombo.setSelectedIndex(2);
+		nombreCaseCombo.setSize(50, 20);
+		nombreCaseCombo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nombreCaseLabel.setText("Nombre de case: ");
+				
+			model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
+			}
+		});
+		frame.add(nombreCaseCombo);
 
 		bouttonDemarrer = new JButton("(Re)Initialiser");
 		bouttonDemarrer.setSize(150, 40);
@@ -411,7 +419,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				+ "<br> Robin Paquet" + "<br> Ludo Van Den Dorpe</center></html>";
 	}
 	public void creditConsole() {
-		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " Tristan Pestiaux\n" + "  Robin Paquet\n"
+		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " Â©Tristan Pestiaux\n" + "  Robin Paquet\n"
 				+ "  Ludo Van Den Dorpe\n"
 				+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et demarrer le 2048\n");
 	}
@@ -443,6 +451,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Haut");
 			model.deplacement("H");
+			model.ajouterAleatoire();
 		}
 	};
 	AbstractAction actionBas = new AbstractAction() {
@@ -453,6 +462,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Bas");
 			model.deplacement("B");
+			model.ajouterAleatoire();
 		}
 	};
 	AbstractAction actionGauche = new AbstractAction() {
@@ -463,6 +473,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Gauche");
 			model.deplacement("G");
+			model.ajouterAleatoire();
 		}
 	};
 	AbstractAction actionDroite = new AbstractAction() {
@@ -473,6 +484,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Droite");
 			model.deplacement("D");
+			model.ajouterAleatoire();
 		}
 	};
 
