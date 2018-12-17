@@ -11,13 +11,11 @@ public class VueConsole2048 extends Vue2048 implements Observer{
 	
 	public VueConsole2048(Plateau model, Controller2048 controller) {
 		super(model, controller);
-		update(null, null);
+		//update(null, null);
 		}
 	@Override
 	public void update(Observable o, Object arg) {
 		affiche();
-		
-		
 	}
 
 	
@@ -86,12 +84,12 @@ public class VueConsole2048 extends Vue2048 implements Observer{
 		}
 		if(estGagner) {
 			System.out.println("score : " + model.getScore() + "\n");
-			System.out.println("GagnÃ© !");
+			System.out.println("Gagné !");
 		}else if(estPerdu) {
 			System.out.println("score : " + model.getScore() + "\n");
 			System.out.println("Perdu !\n appuyer sur enter pour redémarrer");
 		}else {
-		System.out.println("score : " + model.getScore() + "\n");
+		if(model.getScore() > 0) System.out.println("score : " + model.getScore() + "\n");
 		System.out.println(affi);
 		}
 	}
