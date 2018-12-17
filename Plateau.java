@@ -25,6 +25,7 @@ public class Plateau extends Observable {
 	}
 
 	public int getDimension() {
+
 		return dimension;
 	}
 
