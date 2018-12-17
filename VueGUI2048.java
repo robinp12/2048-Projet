@@ -62,6 +62,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 	@Override
 	public void affiche() {
+		x = model.getDimension();
 		tuiles(x);
 	}
 	@Override
@@ -410,7 +411,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				+ "<br> Robin Paquet" + "<br> Ludo Van Den Dorpe</center></html>";
 	}
 	public void creditConsole() {
-		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " Â©Tristan Pestiaux\n" + "  Robin Paquet\n"
+		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " Tristan Pestiaux\n" + "  Robin Paquet\n"
 				+ "  Ludo Van Den Dorpe\n"
 				+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et demarrer le 2048\n");
 	}
@@ -442,7 +443,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Haut");
 			model.deplacement("H");
-			model.ajouterAleatoire();
 		}
 	};
 	AbstractAction actionBas = new AbstractAction() {
@@ -453,7 +453,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Bas");
 			model.deplacement("B");
-			model.ajouterAleatoire();
 		}
 	};
 	AbstractAction actionGauche = new AbstractAction() {
@@ -464,7 +463,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Gauche");
 			model.deplacement("G");
-			model.ajouterAleatoire();
 		}
 	};
 	AbstractAction actionDroite = new AbstractAction() {
@@ -475,7 +473,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Droite");
 			model.deplacement("D");
-			model.ajouterAleatoire();
 		}
 	};
 
