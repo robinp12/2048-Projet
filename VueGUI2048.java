@@ -1,20 +1,13 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
-
-import controller.Controller2048;
-import model.Plateau;
-
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.color.ColorSpace;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -24,10 +17,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.Timer;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
+import controller.Controller2048;
+import model.Plateau;
+
+public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 	int x = model.getDimension();
 	Color couleurGris = new Color(180,180,180);
@@ -58,11 +52,8 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
-		frame.addKeyListener(null);
 		frame.setLayout(null);
 		frame.setVisible(true);
-
-		tuiles(x);
 
 		panneauDroit();
 
@@ -73,17 +64,14 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 	public void affiche() {
 		tuiles(x);
 	}
-
 	@Override
 	public void update(Observable o, Object arg) {
 		affiche();
 	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 
 	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 
@@ -146,12 +134,10 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 		}
 
 	}
-
 	@Override
 	public void keyReleased(KeyEvent e) {
 
 	}
-
 	
 	public void boiteDialogue(String titre, String texte) {
 		fenetreCredit = new JDialog();
@@ -164,115 +150,173 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
         fenetreCredit.setVisible(true);
 	}
 	public void tuiles(int x) {
-
 		int valeur;
 		tuiles = new JPanel[x][x];
 		numeroCase = new JLabel[x][x];
 		for (int i = 0; i < x; i++) {
 			for (int e = 0; e < x; e++) {
 				valeur = model.getTableau(e, i);
+				tuiles[i][e] = new JPanel();
+				tuiles[i][e].setBackground(Color.LIGHT_GRAY);
+				
+				numeroCase[i][e] = new JLabel();
 				switch (x) {
 				case 2:
-					tuiles[i][e] = new JPanel();
+					
 					tuiles[i][e].setSize(200, 200);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(210 * i + 30, 210 * e + 30);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - 10 * x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN,170));
+					numeroCase[i][e].setSize(200, 200);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 3:
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(130, 130);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(140 * i + 25, 140 * e + 25);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - 10 * x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 110));
+					numeroCase[i][e].setSize(130, 130);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 4:
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(100, 100);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(110 * i + 20, 110 * e + 20);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - 5 * x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 80));
+					numeroCase[i][e].setSize(100, 100);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 5:
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(80, 80);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(90 * i + 20, 90 * e + 20);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - 3 * x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 60));
+					numeroCase[i][e].setSize(80, 80);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 6:
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(65, 65);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(75 * i + 15, 75 * e + 15);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - 3 * x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 50));
+					numeroCase[i][e].setSize(65, 65);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 7:
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(55, 55);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(62 * i + 10, 62 * e + 10);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - 2 * x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 40));
+					numeroCase[i][e].setSize(55, 55);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 8:
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(46, 46);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(53 * i + 12, 53 * e + 12);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - 2 * x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 30));
+					numeroCase[i][e].setSize(46, 46);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 9:
-					tuiles[i][e] = new JPanel();
 					tuiles[i][e].setSize(42, 42);
-					tuiles[i][e].setBackground(couleurGris);
 					tuiles[i][e].setLocation(50 * i + 12, 50 * e + 12);
 					frame.add(tuiles[i][e]);
 
-					numeroCase[i][e] = new JLabel();
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, tuiles[i][e].getHeight() - x));
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 28));
+					numeroCase[i][e].setSize(42, 42);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
+				}
+				switch (valeur) {
+				case 2 : 
+					tuiles[i][e].setBackground(new Color(0xeee4da));
+					break;
+				case 4 : 
+					tuiles[i][e].setBackground(new Color(0xede0c8));
+					break;
+				case 8 : 
+					tuiles[i][e].setBackground(new Color(0xf2b179));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
+				case 16 : 
+					tuiles[i][e].setBackground(new Color(0xf59563));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
+				case 32 : 
+					tuiles[i][e].setBackground(new Color(0xf67c5f));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
+				case 64 : 
+					tuiles[i][e].setBackground(new Color(0xf65e3b));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
+				case 128 : 
+					tuiles[i][e].setBackground(new Color(0xedcf72));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;					
 				}
 			}
 		}
 	}
-
+	public void timer() {
+		 timer = new Timer(10, new ActionListener() {
+	        	private int miliseconde = 0, seconde = 0, minute = 0;
+				private int couleurMin = 0;
+				private int couleurMax = 255;
+				
+				@Override 
+				public void actionPerformed(ActionEvent e) {
+					miliseconde++;
+					if(miliseconde == 60)
+					{
+						miliseconde = 0;
+						seconde++;
+					}
+					if(seconde == 60)
+					{
+						seconde = 0;
+						minute++;
+					}
+					if(minute == 60)
+					{
+						miliseconde = 0;
+						seconde = 0;
+						minute = 0;
+						boiteDialogue("Message","Vous avez perdu");
+					}
+					labelScore.setText("Score: " + model.getScore());
+					labelTemps.setText("Temps: " + minute + ":" + seconde + ":" + miliseconde);
+					
+					model.setDimension(nombreCaseSlider.getValue());
+					nombreCaseLabel.setText("Nombre de case: " + model.getDimension());
+					
+					if(couleurMin < 255 && couleurMax > 0) {
+					Color rain = new Color(couleurMin++,couleurMin++/2,couleurMax--);
+					labelTitre.setForeground(rain);
+					}
+					else {
+						labelTitre.setForeground(Color.orange);
+					}
+					
+				}
+			});
+	}
 	public void panneauDroit() {
 
 		labelTitre = new JLabel("2048");
@@ -289,65 +333,26 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
         labelScore.setFont(new Font("Arial", Font.BOLD, 25));
         frame.add(labelScore);
 
-        timer = new Timer(10, new ActionListener() {
-			int miliseconde = 0;
-			int seconde = 0; 
-			int minute = 0;
-			int rand = 0;
-			int randmax = 255;
-			@Override 
-			public void actionPerformed(ActionEvent e) {
-				miliseconde++;
-				if(miliseconde == 60)
-				{
-					miliseconde = 0;
-					seconde++;
-				}
-				if(seconde == 60)
-				{
-					seconde = 0;
-					minute++;
-				}
-				if(minute == 60)
-				{
-					miliseconde = 0;
-					seconde = 0;
-					minute = 0;
-					boiteDialogue("Message","Vous avez perdu");
-				}
-				labelScore.setText("Score: " + model.getScore());
-				labelTemps.setText("Temps: " + minute + ":" + seconde + ":" + miliseconde);
-				model.setDimension(nombreCaseSlider.getValue());
-				//tuiles(x);
-				if(rand < 255 && randmax > 0) {
-				Color rain = new Color(rand++,rand++/2,randmax--);
-				labelTitre.setForeground(rain);
-				}
-				else {
-					labelTitre.setForeground(Color.orange);
-				}
-				
-			}
-		});
-
-
-		nombreCaseLabel = new JLabel("Nombre de case:(Par defaut 4)");
-		nombreCaseLabel.setSize(180, 60);
-		nombreCaseLabel.setLocation(490, 140);
-		nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 11));
-		frame.add(nombreCaseLabel);
+        timer();
+	
         labelTemps = new JLabel();
         labelTemps.setText("Temps: ");
         labelTemps.setForeground(Color.RED);
         labelTemps.setSize(180,60);
         labelTemps.setLocation(490, 105);
         labelTemps.setFont(new Font("Arial", Font.BOLD, 15));
-        frame.add(labelTemps);
+        frame.add(labelTemps);	
+        
+        nombreCaseLabel = new JLabel("Nombre de case:(Par defaut 4)");
+		nombreCaseLabel.setSize(180, 60);
+		nombreCaseLabel.setLocation(490, 140);
+		nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 11));
+		frame.add(nombreCaseLabel);
+		
 
 		nombreCaseSlider = new JSlider(JSlider.HORIZONTAL, 2, 9, x);
 		nombreCaseSlider.setMinorTickSpacing(2);
 		nombreCaseSlider.setMajorTickSpacing(9);
-		nombreCaseSlider.addChangeListener(this);
 		nombreCaseSlider.setLocation(490, 185);
 		nombreCaseSlider.setSize(155, 20);
 		frame.add(nombreCaseSlider);
@@ -357,6 +362,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 		bouttonDemarrer.setLocation(490,225);
 		bouttonDemarrer.setBackground(Color.LIGHT_GRAY);
 		bouttonDemarrer.addActionListener(actionDemarrer);
+		bouttonDemarrer.addKeyListener(this);
 		frame.add(bouttonDemarrer);
 
 		bouttonCredit = new JButton("Credit");
@@ -403,9 +409,8 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 		return "<html><center>Bienvenue dans notre Projet 2048" + "<br>en JAVA !" + "<br> Tristan Pestiaux"
 				+ "<br> Robin Paquet" + "<br> Ludo Van Den Dorpe</center></html>";
 	}
-
 	public void creditConsole() {
-		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " ©Tristan Pestiaux\n" + "  Robin Paquet\n"
+		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " Â©Tristan Pestiaux\n" + "  Robin Paquet\n"
 				+ "  Ludo Van Den Dorpe\n"
 				+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et demarrer le 2048\n");
 	}
@@ -413,12 +418,10 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 	AbstractAction actionDemarrer = new AbstractAction() {
 
 		private static final long serialVersionUID = 1L;
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			model.initialisation(x);
-            timer.start();   
-
+            timer.start();
 		}
 	};
 	AbstractAction actionCredit = new AbstractAction() {
@@ -427,7 +430,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			boiteDialogue("Credit©",texte());
+			boiteDialogue("Credit ©",texte());
 		}
 	};
 
@@ -476,11 +479,5 @@ public class VueGUI2048 extends Vue2048 implements KeyListener, ChangeListener {
 		}
 	};
 
-	@Override
-	public void stateChanged(ChangeEvent arg0) {
-		model.setDimension(nombreCaseSlider.getValue());
-		System.out.println(model.getDimension());
 
-	}
-	
 }
