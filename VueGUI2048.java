@@ -62,6 +62,9 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		creditConsole();
 	}
+	public JPanel getTuile(int i, int e) {
+		return tuiles[i][e];
+	}
 
 	@Override
 	public void affiche() {
@@ -100,38 +103,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			System.out.println("Bas");
 			model.deplacement("B");
 		}
-		if (key == KeyEvent.VK_NUMPAD2) {
-			System.out.println("Initialisation 2X2 - Reset");
-			model.initialisation(2);
-		}
-		if (key == KeyEvent.VK_NUMPAD3) {
-			System.out.println("Initialisation 3X3 - Reset");
-			model.initialisation(3);
-		}
-		if (key == KeyEvent.VK_NUMPAD4) {
-			System.out.println("Initialisation 4X4 - Reset");
-			model.initialisation(4);
-		}
-		if (key == KeyEvent.VK_NUMPAD5) {
-			System.out.println("Initialisation 5X5 - Reset");
-			model.initialisation(5);
-		}
-		if (key == KeyEvent.VK_NUMPAD6) {
-			System.out.println("Initialisation 6X6 - Reset");
-			model.initialisation(6);
-		}
-		if (key == KeyEvent.VK_NUMPAD7) {
-			System.out.println("Initialisation 7X7 - Reset");
-			model.initialisation(7);
-		}
-		if (key == KeyEvent.VK_NUMPAD8) {
-			System.out.println("Initialisation 8X8 - Reset");
-			model.initialisation(8);
-		}
-		if (key == KeyEvent.VK_NUMPAD9) {
-			System.out.println("Initialisation 9X9 - Reset");
-			model.initialisation(9);
-		}
+		
 
 		else {
 			System.setErr(null);
@@ -361,8 +333,9 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				nombreCaseLabel.setText("Nombre de case: ");
-				
-			model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
+				controller.viderTableau(tuiles);
+				model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
+				model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
 			}
 		});
 		frame.add(nombreCaseCombo);
@@ -426,12 +399,15 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	}
 
 	AbstractAction actionDemarrer = new AbstractAction() {
+		
 
 		private static final long serialVersionUID = 1L;
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			model.initialisation(x);
             timer.start();
+
 		}
 	};
 	AbstractAction actionCredit = new AbstractAction() {
