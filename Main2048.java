@@ -29,9 +29,7 @@ public class Main2048 implements Runnable {
             public void run() {
             	Thread a = new Thread(new Main2048());
 				Thread b = new Thread(new Main2048());
-				/*
-				 * This thread will pause for 1000 milliseconds after printing each number.
-				 */
+				
 				a.run();
 				b.run();
             }
