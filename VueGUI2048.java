@@ -23,6 +23,26 @@ import model.Plateau;
 
 public class VueGUI2048 extends Vue2048 implements KeyListener{
 
+	private int miliseconde = 0, seconde = 0, minute = 0;
+	public int getMiliseconde() {
+		return miliseconde;
+	}
+	public void setMiliseconde(int miliseconde) {
+		this.miliseconde = miliseconde;
+	}
+	public int getSeconde() {
+		return seconde;
+	}
+	public void setSeconde(int seconde) {
+		this.seconde = seconde;
+	}
+	public int getMinute() {
+		return minute;
+	}
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+
 	int x = model.getDimension();
 	Color couleurGris = new Color(180,180,180);
 
@@ -55,6 +75,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		frame.setLayout(null);
 		frame.setVisible(true);
 		
+		tuiles(x);
 		boiteDialogue("Comment jouer ?", "<html>D'abord choisissez le nombre de case pour jouer,"
 				+ "ensuite vous pouvez cliquer sur '(Re)Initialiser' et jouer avec les fleches.</html>");
 
@@ -252,7 +273,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	}
 	public void timer() {
 		 timer = new Timer(10, new ActionListener() {
-	        	private int miliseconde = 0, seconde = 0, minute = 0;
 				private int couleurMin = 0;
 				private int couleurMax = 255;
 				
@@ -335,7 +355,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				nombreCaseLabel.setText("Nombre de case: ");
 				controller.viderTableau(tuiles);
 				model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
-				model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
 			}
 		});
 		frame.add(nombreCaseCombo);
@@ -393,7 +412,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				+ "<br> Robin Paquet" + "<br> Ludo Van Den Dorpe</center></html>";
 	}
 	public void creditConsole() {
-		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " Â©Tristan Pestiaux\n" + "  Robin Paquet\n"
+		System.out.println("Bienvenue dans notre 2048 Perso en JAVA !\n" + " Ã‚Â©Tristan Pestiaux\n" + "  Robin Paquet\n"
 				+ "  Ludo Van Den Dorpe\n"
 				+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et demarrer le 2048\n");
 	}
@@ -405,9 +424,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			model.initialisation(x);
-            timer.start();
-
+			model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
+			timer.start();
+            setMiliseconde(0);
+            setSeconde(0);
+            setMinute(0);
 		}
 	};
 	AbstractAction actionCredit = new AbstractAction() {
@@ -416,7 +437,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			boiteDialogue("Credit ©",texte());
+			boiteDialogue("Credit Â©",texte());
 		}
 	};
 
@@ -460,6 +481,3 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			model.deplacement("D");
 		}
 	};
-
-
-}
