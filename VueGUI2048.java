@@ -44,7 +44,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	}
 
 	int x = model.getDimension();
-	Color couleurGris = new Color(180,180,180);
+	private Color couleurGris = new Color(180,180,180);
 
 	private JFrame 	frame;
 	private JPanel 	tuiles[][];
@@ -59,6 +59,8 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	private JButton bouttonDemarrer;
 	private JButton bouttonCredit;
 	private JDialog fenetreCredit;
+	private JDialog fenetreChoix;
+
 
 	private JButton bouttonHaut;
 	private JButton bouttonBas;
@@ -76,8 +78,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		frame.setVisible(true);
 		
 		tuiles(x);
-		boiteDialogue("Comment jouer ?", "<html>D'abord choisissez le nombre de case pour jouer,"
-				+ "ensuite vous pouvez cliquer sur '(Re)Initialiser' et jouer avec les fleches.</html>");
+		
+		choixTuiles();
+		
+		boiteDialogue("Comment jouer ?", "<html><div>D'abord choisissez le nombre de case pour jouer,"
+				+ "ensuite vous pouvez cliquer sur '(Re)Initialiser' et jouer avec les fleches.</div></html>");
 
 		panneauDroit();
 
@@ -136,13 +141,40 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 	}
 	
+	public void choixTuiles(){
+		fenetreChoix = new JDialog();
+		fenetreChoix.setTitle("Choix des tuiles");
+		fenetreChoix.setSize(240, 200);
+		fenetreChoix.setLocationRelativeTo(null);
+		fenetreChoix.setLayout(new GridBagLayout());
+		fenetreChoix.setVisible(true);
+        
+		nombreCaseLabel = new JLabel("<html>Choix du nombre de case : <br>(Par defaut: 4x4) </html>");
+		nombreCaseLabel.setSize(180, 60);
+		nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+		fenetreChoix.add(nombreCaseLabel);
+		
+		String valeurNombreCase[] = {"2","3","4","5","6","7","8","9"};
+		nombreCaseCombo = new JComboBox<Object>(valeurNombreCase);
+		nombreCaseCombo.setSelectedIndex(2);
+		nombreCaseCombo.setSize(50, 20);
+		nombreCaseCombo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.viderTableau(tuiles);
+				model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
+				model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
+			}
+		});
+		fenetreChoix.add(nombreCaseCombo);
+	}
 	public void boiteDialogue(String titre, String texte) {
 		fenetreCredit = new JDialog();
         fenetreCredit.setTitle(titre);
         fenetreCredit.setSize(240, 200);
         fenetreCredit.setLocationRelativeTo(null);
         fenetreCredit.setLayout(new GridBagLayout());
-        fenetreCredit.setResizable(false);
         fenetreCredit.add(new JLabel(texte));
         fenetreCredit.setVisible(true);
 	}
@@ -297,7 +329,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 						boiteDialogue("Message","Vous avez perdu");
 					}
 					labelScore.setText("Score: " + model.getScore());
-					labelTemps.setText("Temps: " + minute + ":" + seconde + ":" + miliseconde);
+					labelTemps.setText("Temps: " + getMinute() + ":" + getSeconde() + ":" + getMiliseconde());
 					
 					if(couleurMin < 255 && couleurMax > 0) {
 						Color rain = new Color(couleurMin++,couleurMin++/2,couleurMax--/2);
@@ -322,7 +354,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
         labelScore = new JLabel("Score: ");
         labelScore.setForeground(couleurGris);
         labelScore.setSize(180,60);
-        labelScore.setLocation(490, 71);
+        labelScore.setLocation(490, 90);
         labelScore.setFont(new Font("Arial", Font.BOLD, 25));
         frame.add(labelScore);
 
@@ -332,33 +364,10 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
         labelTemps.setText("Temps: ");
         labelTemps.setForeground(Color.RED);
         labelTemps.setSize(180,60);
-        labelTemps.setLocation(490, 105);
-        labelTemps.setFont(new Font("Arial", Font.BOLD, 15));
+        labelTemps.setLocation(490, 150);
+        labelTemps.setFont(new Font("Arial", Font.BOLD, 18));
         frame.add(labelTemps);	
         
-        nombreCaseLabel = new JLabel("Nombre de case:");
-		nombreCaseLabel.setSize(180, 60);
-		nombreCaseLabel.setLocation(490, 150);
-		nombreCaseLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-		frame.add(nombreCaseLabel);
-		
-		
-		String valeurNombreCase[] = {"2","3","4","5","6","7","8","9"};
-		nombreCaseCombo = new JComboBox<Object>(valeurNombreCase);
-		nombreCaseCombo.setLocation(590, 170);
-		nombreCaseCombo.setSelectedIndex(2);
-		nombreCaseCombo.setSize(50, 20);
-		nombreCaseCombo.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				nombreCaseLabel.setText("Nombre de case: ");
-				controller.viderTableau(tuiles);
-				model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
-			}
-		});
-		frame.add(nombreCaseCombo);
-
 		bouttonDemarrer = new JButton("(Re)Initialiser");
 		bouttonDemarrer.setSize(150, 40);
 		bouttonDemarrer.setLocation(490,225);
@@ -376,7 +385,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		bouttonHaut = new JButton("\u21e7");
         bouttonHaut.setSize(45, 35);
-        bouttonHaut.setLocation(542, 330);
+        bouttonHaut.setLocation(542, 350);
 		bouttonHaut.addActionListener(actionHaut);
 		bouttonHaut.setBackground(Color.LIGHT_GRAY);
 		bouttonHaut.setForeground(Color.BLUE);
@@ -384,7 +393,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		bouttonBas = new JButton("\u21e9");
         bouttonBas.setSize(45, 35);
-        bouttonBas.setLocation(542, 370);
+        bouttonBas.setLocation(542, 390);
 		bouttonBas.addActionListener(actionBas);
 		bouttonBas.setBackground(Color.LIGHT_GRAY);
 		bouttonBas.setForeground(Color.BLUE);
@@ -392,7 +401,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		bouttonGauche = new JButton("\u21e6");
         bouttonGauche.setSize(46, 35);
-        bouttonGauche.setLocation(490, 370);
+        bouttonGauche.setLocation(490, 390);
 		bouttonGauche.addActionListener(actionGauche);
 		bouttonGauche.setBackground(Color.LIGHT_GRAY);
 		bouttonGauche.setForeground(Color.BLUE);
@@ -400,7 +409,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		bouttonDroite = new JButton("\u21e8");
         bouttonDroite.setSize(46, 35);
-        bouttonDroite.setLocation(592, 370);
+        bouttonDroite.setLocation(592, 390);
 		bouttonDroite.addActionListener(actionDroite);
 		bouttonDroite.setBackground(Color.LIGHT_GRAY);
 		bouttonDroite.setForeground(Color.BLUE);
@@ -437,7 +446,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			boiteDialogue("Credit Â©",texte());
+			boiteDialogue("Credit ©",texte());
 		}
 	};
 
