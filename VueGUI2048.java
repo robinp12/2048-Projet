@@ -42,15 +42,15 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	private Timer	timer;
 	private JLabel 	nombreCaseLabel;
 	private JComboBox<Object> nombreCaseCombo;
-	private JButton bouttonDemarrer;
-	private JButton bouttonCredit;
+	private JButton boutonDemarrer;
+	private JButton boutonCredit;
 	private JDialog fenetreCredit;
 	private JDialog fenetreChoix;
 
-	private JButton bouttonHaut;
-	private JButton bouttonBas;
-	private JButton bouttonGauche;
-	private JButton bouttonDroite;
+	private JButton boutonHaut;
+	private JButton boutonBas;
+	private JButton boutonGauche;
+	private JButton boutonDroite;
 
 	/*
 	 * Initialisation de la fenetre principale
@@ -351,7 +351,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 						miliseconde = 0;
 						seconde = 0;
 						minute = 0;
-						boiteDialogue("Message","Vous avez perdu");
+						boiteDialogue("Perdu","Vous avez perdu");
 					}
 					labelScore.setText("Score: " + model.getScore());
 					labelTemps.setText("Temps: " + getMinute() + ":" + getSeconde() + ":" + getMiliseconde());
@@ -397,55 +397,55 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
         labelTemps.setFont(new Font("Arial", Font.BOLD, 18));
         frame.add(labelTemps);	
         
-		bouttonDemarrer = new JButton("(Re)Initialiser");
-		bouttonDemarrer.setSize(150, 40);
-		bouttonDemarrer.setLocation(490,225);
-		bouttonDemarrer.setBackground(Color.LIGHT_GRAY);
-		bouttonDemarrer.addActionListener(actionDemarrer);
-		bouttonDemarrer.addKeyListener(this);
-		frame.add(bouttonDemarrer);
+		boutonDemarrer = new JButton("(Re)Initialiser");
+		boutonDemarrer.setSize(150, 40);
+		boutonDemarrer.setLocation(490,225);
+		boutonDemarrer.setBackground(Color.LIGHT_GRAY);
+		boutonDemarrer.addActionListener(actionDemarrer);
+		boutonDemarrer.addKeyListener(this);
+		frame.add(boutonDemarrer);
 
-		bouttonCredit = new JButton("Credit");
-		bouttonCredit.setSize(150, 40);
-		bouttonCredit.setLocation(490, 275);
-		bouttonCredit.setBackground(Color.LIGHT_GRAY);
-		bouttonCredit.addActionListener(actionCredit);
-		frame.add(bouttonCredit);
+		boutonCredit = new JButton("Credit");
+		boutonCredit.setSize(150, 40);
+		boutonCredit.setLocation(490, 275);
+		boutonCredit.setBackground(Color.LIGHT_GRAY);
+		boutonCredit.addActionListener(actionCredit);
+		frame.add(boutonCredit);
 
 		/*
-		 *Creation des 4 Bouttons directionnels.
+		 *Creation des 4 Boutons directionnels.
 		 */
-		bouttonHaut = new JButton("\u21e7");
-        bouttonHaut.setSize(45, 35);
-        bouttonHaut.setLocation(542, 350);
-		bouttonHaut.addActionListener(actionHaut);
-		bouttonHaut.setBackground(Color.LIGHT_GRAY);
-		bouttonHaut.setForeground(Color.BLUE);
-		frame.add(bouttonHaut);
+		boutonHaut = new JButton("\u21e7");
+        boutonHaut.setSize(45, 35);
+        boutonHaut.setLocation(542, 350);
+		boutonHaut.addActionListener(actionHaut);
+		boutonHaut.setBackground(Color.LIGHT_GRAY);
+		boutonHaut.setForeground(Color.BLUE);
+		frame.add(boutonHaut);
 
-		bouttonBas = new JButton("\u21e9");
-        bouttonBas.setSize(45, 35);
-        bouttonBas.setLocation(542, 390);
-		bouttonBas.addActionListener(actionBas);
-		bouttonBas.setBackground(Color.LIGHT_GRAY);
-		bouttonBas.setForeground(Color.BLUE);
-		frame.add(bouttonBas);
+		boutonBas = new JButton("\u21e9");
+        boutonBas.setSize(45, 35);
+        boutonBas.setLocation(542, 390);
+		boutonBas.addActionListener(actionBas);
+		boutonBas.setBackground(Color.LIGHT_GRAY);
+		boutonBas.setForeground(Color.BLUE);
+		frame.add(boutonBas);
 
-		bouttonGauche = new JButton("\u21e6");
-        bouttonGauche.setSize(46, 35);
-        bouttonGauche.setLocation(490, 390);
-		bouttonGauche.addActionListener(actionGauche);
-		bouttonGauche.setBackground(Color.LIGHT_GRAY);
-		bouttonGauche.setForeground(Color.BLUE);
-		frame.add(bouttonGauche);
+		boutonGauche = new JButton("\u21e6");
+        boutonGauche.setSize(46, 35);
+        boutonGauche.setLocation(490, 390);
+		boutonGauche.addActionListener(actionGauche);
+		boutonGauche.setBackground(Color.LIGHT_GRAY);
+		boutonGauche.setForeground(Color.BLUE);
+		frame.add(boutonGauche);
 
-		bouttonDroite = new JButton("\u21e8");
-        bouttonDroite.setSize(46, 35);
-        bouttonDroite.setLocation(592, 390);
-		bouttonDroite.addActionListener(actionDroite);
-		bouttonDroite.setBackground(Color.LIGHT_GRAY);
-		bouttonDroite.setForeground(Color.BLUE);
-		frame.add(bouttonDroite);
+		boutonDroite = new JButton("\u21e8");
+        boutonDroite.setSize(46, 35);
+        boutonDroite.setLocation(592, 390);
+		boutonDroite.addActionListener(actionDroite);
+		boutonDroite.setBackground(Color.LIGHT_GRAY);
+		boutonDroite.setForeground(Color.BLUE);
+		frame.add(boutonDroite);
 	}
 	/*
 	 * Texte s'affichant dans le dialogue du credit.
@@ -460,7 +460,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et demarrer le 2048\n");
 	}
 	/*
-	 * Action au clique sur le boutton demarrer.
+	 * Action au clique sur le bouton demarrer.
 	 */
 	AbstractAction actionDemarrer = new AbstractAction() {
 		
@@ -481,7 +481,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		}
 	};
 	/*
-	 * Action au clique sur le boutton credit.
+	 * Action au clique sur le bouton credit.
 	 */
 	AbstractAction actionCredit = new AbstractAction() {
 
@@ -493,7 +493,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		}
 	};
 	/*
-	 * Action au clique sur le boutton directionnel Haut.
+	 * Action au clique sur le bouton directionnel Haut.
 	 */
 	AbstractAction actionHaut = new AbstractAction() {
 
@@ -506,7 +506,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		}
 	};
 	/*
-	 * Action au clique sur le boutton directionnel Bas.
+	 * Action au clique sur le bouton directionnel Bas.
 	 */
 	AbstractAction actionBas = new AbstractAction() {
 
@@ -519,7 +519,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		}
 	};
 	/*
-	 * Action au clique sur le boutton directionnel Gauche.
+	 * Action au clique sur le bouton directionnel Gauche.
 	 */
 	AbstractAction actionGauche = new AbstractAction() {
 
@@ -532,7 +532,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		}
 	};
 	/*
-	 * Action au clique sur le boutton directionnel Droit.
+	 * Action au clique sur le bouton directionnel Droit.
 	 */
 	AbstractAction actionDroite = new AbstractAction() {
 
@@ -544,6 +544,5 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			model.deplacement("D");
 		}
 	};
-
 
 }
