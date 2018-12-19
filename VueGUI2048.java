@@ -207,6 +207,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				if(valeur == 128){
 					boiteDialogue("Gagné", "<html><div>Bravo, vous avez gagné !</div><div>Votre score : " + model.getScore() + "</div><div>Temps : " + getMinute() +":"+getSeconde() +":" + getMiliseconde() + "</div></html>");
 					labelTemps.setVisible(false);
+					model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
 				}
 				/*
 				 * Creation des tailles, position et valeur de la case.
@@ -473,6 +474,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			/*
 			 * Reinitialisation du temps a 0.
 			 */
+			labelTemps.setVisible(true);
             setMiliseconde(0);
             setSeconde(0);
             setMinute(0);
