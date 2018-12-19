@@ -71,8 +71,8 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		
 		choixTuiles();
 		
-		boiteDialogue("Comment jouer ?", "<html><div>D'abord choisissez le nombre de case pour jouer,"
-				+ "ensuite vous pouvez cliquer sur '(Re)Initialiser' et jouer avec les fleches.</div></html>");
+		boiteDialogue("Comment jouer ?", "<html><p>D'abord choisissez le nombre de case pour jouer,</p>"
+				+ "<p>ensuite vous pouvez cliquer sur '(Re)Initialiser' </p><p>et jouer avec les fleches.</p></html>");
 
 		panneauDroit();
 
@@ -185,7 +185,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	public void boiteDialogue(String titre, String texte) {
 		fenetreCredit = new JDialog();
         fenetreCredit.setTitle(titre);
-        fenetreCredit.setSize(240, 200);
+        fenetreCredit.setSize(300, 220);
         fenetreCredit.setLocationRelativeTo(null);
         fenetreCredit.setLayout(new GridBagLayout());
         fenetreCredit.add(new JLabel(texte));
@@ -204,6 +204,10 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				tuiles[i][e] = new JPanel();
 				tuiles[i][e].setBackground(Color.LIGHT_GRAY);
 				numeroCase[i][e] = new JLabel();
+				if(valeur == 128){
+					boiteDialogue("Gagné", "<html><div>Bravo, vous avez gagné !</div><div>Votre score : " + model.getScore() + "</div><div>Temps : " + getMinute() +":"+getSeconde() +":" + getMiliseconde() + "</div></html>");
+					labelTemps.setVisible(false);
+				}
 				/*
 				 * Creation des tailles, position et valeur de la case.
 				 */
