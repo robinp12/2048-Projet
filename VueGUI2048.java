@@ -214,23 +214,23 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				 */
 				switch (x) {
 				case 2:
-					tuiles[i][e].setSize(200, 200);
-					tuiles[i][e].setLocation(210 * i + 30, 210 * e + 30);
+					tuiles[i][e].setSize(210, 210);
+					tuiles[i][e].setLocation(218 * i + 20, 218 * e + 20);
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN,170));
-					numeroCase[i][e].setSize(200, 200);
+					numeroCase[i][e].setSize(210, 210);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 3:
-					tuiles[i][e].setSize(130, 130);
-					tuiles[i][e].setLocation(140 * i + 25, 140 * e + 25);
+					tuiles[i][e].setSize(138, 138);
+					tuiles[i][e].setLocation(148 * i + 20, 148 * e + 20);
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 110));
-					numeroCase[i][e].setSize(130, 130);
+					numeroCase[i][e].setSize(138, 138);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 4:
@@ -244,13 +244,13 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 5:
-					tuiles[i][e].setSize(80, 80);
-					tuiles[i][e].setLocation(90 * i + 20, 90 * e + 20);
+					tuiles[i][e].setSize(79, 79);
+					tuiles[i][e].setLocation(88 * i + 20, 88 * e + 20);
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 60));
-					numeroCase[i][e].setSize(80, 80);
+					numeroCase[i][e].setSize(79, 79);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 6:
@@ -264,33 +264,33 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 7:
-					tuiles[i][e].setSize(55, 55);
-					tuiles[i][e].setLocation(62 * i + 10, 62 * e + 10);
+					tuiles[i][e].setSize(57, 57);
+					tuiles[i][e].setLocation(64 * i + 12, 64 * e + 12);
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 40));
-					numeroCase[i][e].setSize(55, 55);
+					numeroCase[i][e].setSize(57, 57);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 8:
-					tuiles[i][e].setSize(46, 46);
-					tuiles[i][e].setLocation(53 * i + 12, 53 * e + 12);
+					tuiles[i][e].setSize(49, 49);
+					tuiles[i][e].setLocation(56 * i + 12, 56 * e + 12);
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 30));
-					numeroCase[i][e].setSize(46, 46);
+					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 32));
+					numeroCase[i][e].setSize(49, 49);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				case 9:
-					tuiles[i][e].setSize(42, 42);
+					tuiles[i][e].setSize(44, 44);
 					tuiles[i][e].setLocation(50 * i + 12, 50 * e + 12);
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 28));
-					numeroCase[i][e].setSize(42, 42);
+					numeroCase[i][e].setSize(44, 44);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				}
