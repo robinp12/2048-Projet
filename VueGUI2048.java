@@ -79,9 +79,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		creditConsole();
 	}
 	
-	public JPanel getTuile(int i, int e) {
-		return tuiles[i][e];
-	}
 	public int getMiliseconde() {
 		return miliseconde;
 	}
@@ -119,25 +116,27 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		/*
 		 * Action quand on appuye sur les fleches.
 		 */
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT) {
-			System.out.println("Gauche");
-			model.deplacement("G");
-		}
-		if (key == KeyEvent.VK_RIGHT) {
-			System.out.println("Droite");
-			model.deplacement("D");
-		}
-		if (key == KeyEvent.VK_UP) {
-			System.out.println("Haut");
-			model.deplacement("H");
-		}
-		if (key == KeyEvent.VK_DOWN) {
-			System.out.println("Bas");
-			model.deplacement("B");
-		}
-		else {
-			System.setErr(null);
+		if(!controller.estGagner() || !controller.estPerdu()) {
+			int key = e.getKeyCode();
+			if (key == KeyEvent.VK_LEFT) {
+				System.out.println("Gauche");
+				model.deplacement("G");
+			}
+			if (key == KeyEvent.VK_RIGHT) {
+				System.out.println("Droite");
+				model.deplacement("D");
+			}
+			if (key == KeyEvent.VK_UP) {
+				System.out.println("Haut");
+				model.deplacement("H");
+			}
+			if (key == KeyEvent.VK_DOWN) {
+				System.out.println("Bas");
+				model.deplacement("B");
+			}
+			else {
+				System.setErr(null);
+			}
 		}
 	}
 	@Override
@@ -171,6 +170,14 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				controller.viderTableau(tuiles);
 				model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
 				model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
+				timer.start();
+				/*
+				 * Reinitialisation du temps a 0.
+				 */
+				labelTemps.setVisible(true);
+	            setMiliseconde(0);
+	            setSeconde(0);
+	            setMinute(0);
 			}
 		});
 		fenetreChoix.add(nombreCaseCombo);
@@ -207,7 +214,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				if(valeur == 128){
 					boiteDialogue("Gagné", "<html><div>Bravo, vous avez gagné !</div><div>Votre score : " + model.getScore() + "</div><div>Temps : " + getMinute() +":"+getSeconde() +":" + getMiliseconde() + "</div></html>");
 					labelTemps.setVisible(false);
-					model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
 				}
 				/*
 				 * Creation des tailles, position et valeur de la case.
