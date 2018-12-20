@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Plateau extends Observable {
 	protected int score = 0;
-	protected boolean estBloquer = true;	
+	protected boolean estBloquer;	
 	protected int dimension = 4;
 	protected int[][] tableau = new int[10][10];
 
@@ -25,7 +25,6 @@ public class Plateau extends Observable {
 	}
 
 	public int getDimension() {
-
 		return dimension;
 	}
 
@@ -43,13 +42,14 @@ public class Plateau extends Observable {
 		return tableau[i][e];
 	}
 
+	/*
+	 * Multiplie la valeur de la case entrée par 2
+	 * Addition du score
+	 * @return valeur multipliée par 2
+	 */
 	public int multiplication(int valeur) {
 		score += valeur * 10;
 		return valeur * 2;
-	}
-
-	public int division(int valeur) {
-		return valeur / 2;
 	}
 
 	public void deplacement(String choix) {
@@ -169,7 +169,10 @@ public class Plateau extends Observable {
 		notifyObservers();
 
 	}
-
+/*
+ * Generation du chiffre 2 ou 4
+ * @return nombre aleatoire généré  
+ */
 	public int generer2ou4() {
 		Random r = new Random();
 		int n = r.nextInt(2);
@@ -180,7 +183,9 @@ public class Plateau extends Observable {
 		}
 		return n;
 	}
-
+/*
+ * Initialisation de toutes les cases a 0.
+ */
 	public void initialisation(int x) {
 		setDimension(x);
 		score = 0;
@@ -196,7 +201,9 @@ public class Plateau extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-
+	/*
+	 * Ajout d'un nombre aleatoire apres chaque deplacements.
+	 */
 	public void ajouterAleatoire() {
 		if (!estBloquer) {
 			int i, e;
