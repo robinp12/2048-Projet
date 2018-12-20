@@ -248,7 +248,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].setSize(138, 138);
 					tuiles[i][e].setLocation(148 * i + 20, 148 * e + 20);
 					frame.add(tuiles[i][e]);
-					labelTitre.setText("64");
+					labelTitre.setText("128");
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 110));
@@ -269,7 +269,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].setSize(79, 79);
 					tuiles[i][e].setLocation(88 * i + 20, 88 * e + 20);
 					frame.add(tuiles[i][e]);
-					labelTitre.setText("1024");
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 60));
@@ -280,7 +279,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].setSize(65, 65);
 					tuiles[i][e].setLocation(75 * i + 15, 75 * e + 15);
 					frame.add(tuiles[i][e]);
-					labelTitre.setText(" 128");
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 50));
@@ -291,7 +289,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].setSize(57, 57);
 					tuiles[i][e].setLocation(64 * i + 12, 64 * e + 12);
 					frame.add(tuiles[i][e]);
-					labelTitre.setText(" 128");
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 40));
@@ -302,7 +299,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].setSize(49, 49);
 					tuiles[i][e].setLocation(56 * i + 12, 56 * e + 12);
 					frame.add(tuiles[i][e]);
-					labelTitre.setText(" 128");
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 32));
@@ -313,7 +309,6 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].setSize(44, 44);
 					tuiles[i][e].setLocation(50 * i + 12, 50 * e + 12);
 					frame.add(tuiles[i][e]);
-					labelTitre.setText(" 128");
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
 					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 28));
@@ -366,8 +361,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				case 2048 : 
 					tuiles[i][e].setBackground(new Color(0x7dcfb2));
 					numeroCase[i][e].setForeground(Color.WHITE);
-					break;
-				}
+					break;				}
 			}
 		}
 	}
