@@ -116,7 +116,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		/*
 		 * Action quand on appuye sur les fleches.
 		 */
-		if(!controller.estGagner() || !controller.estPerdu()) {
+		if(!controller.estGagner() && !controller.estPerdu() && controller.getEstDemarrer()) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_LEFT) {
 				System.out.println("Gauche");
@@ -170,14 +170,9 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				controller.viderTableau(tuiles);
 				model.setDimension(Integer.valueOf((String)nombreCaseCombo.getSelectedItem()));
 				model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
-				timer.start();
-				/*
-				 * Reinitialisation du temps a 0.
-				 */
+
+				
 				labelTemps.setVisible(true);
-	            setMiliseconde(0);
-	            setSeconde(0);
-	            setMinute(0);
 			}
 		});
 		fenetreChoix.add(nombreCaseCombo);
@@ -476,7 +471,9 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			model.initialisation((Integer.valueOf((String)nombreCaseCombo.getSelectedItem())));
+			
 			timer.start();
+			controller.setEstDemarrer(true);
 			/*
 			 * Reinitialisation du temps a 0.
 			 */
@@ -490,6 +487,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	 * Action au clique sur le bouton credit.
 	 */
 	AbstractAction actionCredit = new AbstractAction() {
+		
 
 		private static final long serialVersionUID = 1L;
 
