@@ -221,7 +221,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				tuiles[i][e] = new JPanel();
 				tuiles[i][e].setBackground(Color.LIGHT_GRAY);
 				numeroCase[i][e] = new JLabel();
-				if(valeur == 128){
+				if(controller.estGagner()){
 					boiteDialogue("Gagné", "<html><div>Bravo, vous avez gagné !</div><div>Votre score : " 
 					+ model.getScore() + "</div><div>Temps : " 
 					+ getMinute() +":"+getSeconde() +":" + getMiliseconde() + "</div><div>Appuyez sur 'Re(Initialiser)' </div><div>pour recommencer.  </div></html>");
