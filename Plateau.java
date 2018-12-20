@@ -12,32 +12,42 @@ public class Plateau extends Observable {
 
 	public Plateau() {
 	}
-
+	/*
+	 * Retourne le score du joueur
+	 * @return le score du joueur
+	 */
 	public int getScore() {
 		return score;
 	}
-
+	/*
+	 * Mise à jour de la dimension du tableau
+	 * @param x la nouvelle dimension du tableau
+	 */
 	public void setDimension(int x) {
 		dimension = x;
-		/*setChanged();
-		notifyObservers();*/
 
 	}
-
+	/*
+	 * Retourne la dimension du tableau
+	 * @return la dimension du tableau
+	 */
 	public int getDimension() {
 		return dimension;
 	}
-
+	/*
+	 * Retourne le fait que le jeu soit bloqué ou non
+	 * @return estBloquer
+	 */
 	public boolean getEstBloquer() {
 		return estBloquer;
 	}
 
-	public void setEstBloquer(boolean x) {
-		estBloquer = x;
-		setChanged();
-		notifyObservers();
-	}
 
+	/*
+	 * Retourne la valeur de la case demandée
+	 * @param la ligne et la colonne de la case souhaitée
+	 * @return la valeur de la case aux indices donnés
+	 */
 	public int getTableau(int i, int e) {
 		return tableau[i][e];
 	}
@@ -51,7 +61,10 @@ public class Plateau extends Observable {
 		score += valeur * 10;
 		return valeur * 2;
 	}
-
+	/*
+	 * Fait le déplacement souhaité par le joueur
+	 * @param le choix de déplacement du joueur (bas, gauche, haut ou droite)
+	 */
 	public void deplacement(String choix) {
 		estBloquer = true;
 		int ligne;
@@ -185,6 +198,7 @@ public class Plateau extends Observable {
 	}
 /*
  * Initialisation de toutes les cases a 0.
+ * @param les dimension du tableau
  */
 	public void initialisation(int x) {
 		setDimension(x);
@@ -202,7 +216,7 @@ public class Plateau extends Observable {
 		notifyObservers();
 	}
 	/*
-	 * Ajout d'un nombre aleatoire apres chaque deplacements.
+	 * Ajout d'un nombre aleatoire
 	 */
 	public void ajouterAleatoire() {
 		if (!estBloquer) {
