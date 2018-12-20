@@ -36,8 +36,18 @@ public class Controller2048 {
 	public boolean estGagner() {
 		for (int i = 0; i < model.getDimension(); i++) {
 			for (int e = 0; e < model.getDimension(); e++) {
-				if (model.getTableau(i, e) == 128) {
-					return true;
+				if(model.getDimension() == 2) {
+					if (model.getTableau(i, e) == 16) {
+						return true;
+					}
+				}else if(model.getDimension() == 3) {
+					if (model.getTableau(i, e) == 128) {
+						return true;
+					}
+				}else {
+					if (model.getTableau(i, e) == 2048) {
+						return true;
+					}
 				}
 			}
 		}
