@@ -9,6 +9,7 @@ public class Controller2048 {
 
 	Plateau model;
 	Vue2048 vue;
+	private boolean estDemarrer = false;
 
 	public Controller2048(Plateau model) {
 		this.model = model;
@@ -77,5 +78,12 @@ public class Controller2048 {
 		}else {
 			return false;
 		}
+	}
+	
+	public void setEstDemarrer(boolean x) {
+		estDemarrer = x;
+	}
+	public boolean getEstDemarrer() {
+		return estDemarrer;
 	}
 }
