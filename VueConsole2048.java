@@ -8,7 +8,6 @@ import controller.Controller2048;
 import model.Plateau;
 
 public class VueConsole2048 extends Vue2048 implements Observer{
-	boolean estGagner;
 	
 	public VueConsole2048(Plateau model, Controller2048 controller) {
 		super(model, controller);
