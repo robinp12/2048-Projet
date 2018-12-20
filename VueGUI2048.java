@@ -209,8 +209,15 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		numeroCase = new JLabel[x][x];
 		
 		if(controller.estPerdu()){
-			boiteDialogue("Perdu", "<html><div>Vous avez perdu !</div><div>Votre score : 0 </div><div>Temps : " 
+			boiteDialogue("Perdu", "<html><div>Vous avez perdu !</div><div>Votre score : " + model.getScore() + "</div><div>Temps : " 
 					+ getMinute() +":"+getSeconde() +":" + getMiliseconde() + "</div><div>Appuyez sur 'Re(Initialiser)' </div><div>pour recommencer.  </div></html>");
+			timer.stop();
+			labelTemps.setVisible(false);
+		}
+		if(controller.estGagner()){
+			boiteDialogue("Gagné", "<html><div>Bravo, vous avez gagné !</div><div>Votre score : " 
+			+ model.getScore() + "</div><div>Temps : " 
+			+ getMinute() +":"+getSeconde() +":" + getMiliseconde() + "</div><div>Appuyez sur 'Re(Initialiser)' </div><div>pour recommencer.  </div></html>");
 			timer.stop();
 			labelTemps.setVisible(false);
 		}
@@ -221,13 +228,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				tuiles[i][e] = new JPanel();
 				tuiles[i][e].setBackground(Color.LIGHT_GRAY);
 				numeroCase[i][e] = new JLabel();
-				if(controller.estGagner()){
-					boiteDialogue("Gagné", "<html><div>Bravo, vous avez gagné !</div><div>Votre score : " 
-					+ model.getScore() + "</div><div>Temps : " 
-					+ getMinute() +":"+getSeconde() +":" + getMiliseconde() + "</div><div>Appuyez sur 'Re(Initialiser)' </div><div>pour recommencer.  </div></html>");
-					timer.stop();
-					labelTemps.setVisible(false);
-				}
+				
 				/*
 				 * Creation des tailles, position et valeur de la case.
 				 */
