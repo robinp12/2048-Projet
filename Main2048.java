@@ -9,7 +9,8 @@ import view.VueGUI2048;
 
 public class Main2048 extends Thread {
 
-	public Main2048() {
+	public Main2048(String s) {
+		super(s);
 		Plateau modele = new Plateau();
 		
 		Controller2048 controleurConsole = new Controller2048(modele);
@@ -26,11 +27,11 @@ public class Main2048 extends Thread {
 			
 			@Override
 			public void run() {
-				Main2048 a = new Main2048();
-				Main2048 b = new Main2048();
+				Main2048 a = new Main2048("Joueur 1");
+				Main2048 b = new Main2048("Joueur 2");
 				a.start();
-				b.start();
+				b.start();				
 			}
-		});
+		});	
 	}
 }
