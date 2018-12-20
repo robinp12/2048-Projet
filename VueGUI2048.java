@@ -350,7 +350,23 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				case 128 : 
 					tuiles[i][e].setBackground(new Color(0xedcf72));
 					numeroCase[i][e].setForeground(Color.WHITE);
-					break;					
+					break;	
+				case 256 : 
+					tuiles[i][e].setBackground(new Color(0xdeff82));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
+				case 512 : 
+					tuiles[i][e].setBackground(new Color(0xadff92));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
+				case 1024 : 
+					tuiles[i][e].setBackground(new Color(0x9dcfa2));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
+				case 2048 : 
+					tuiles[i][e].setBackground(new Color(0x7dcfb2));
+					numeroCase[i][e].setForeground(Color.WHITE);
+					break;
 				}
 			}
 		}
