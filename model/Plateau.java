@@ -45,7 +45,7 @@ public class Plateau extends Observable {
 
 	/**
 	 * Retourne la valeur de la case demandée
-	 * @param la ligne et la colonne de la case souhaitée
+	 * @param i, e : la ligne et la colonne de la case souhaitée
 	 * @return la valeur de la case aux indices donnés
 	 */
 	public int getTableau(int i, int e) {
@@ -56,6 +56,7 @@ public class Plateau extends Observable {
 	 * Multiplie la valeur de la case entrée par 2
 	 * Addition du score
 	 * @return valeur multipliée par 2
+	 * @param valeur : la valeur à multiplier
 	 */
 	public int multiplication(int valeur) {
 		score += valeur * 10;
@@ -63,7 +64,7 @@ public class Plateau extends Observable {
 	}
 	/**
 	 * Fait le déplacement souhaité par le joueur
-	 * @param le choix de déplacement du joueur (bas, gauche, haut ou droite)
+	 * @param choix : le choix de déplacement du joueur (bas, gauche, haut ou droite)
 	 */
 	public void deplacement(String choix) {
 		estBloquer = true;
@@ -198,7 +199,7 @@ public class Plateau extends Observable {
 	}
 /**
  * Initialisation de toutes les cases a 0.
- * @param les dimension du tableau
+ * @param x : les dimension du tableau
  */
 	public void initialisation(int x) {
 		setDimension(x);
