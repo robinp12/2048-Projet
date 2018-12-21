@@ -28,9 +28,9 @@ public class Main2048 extends Thread {
 			@Override
 			public void run() {
 				Main2048 a = new Main2048("Joueur 1");
-				Main2048 b = new Main2048("Joueur 2");
+				//Main2048 b = new Main2048("Joueur 2");
 				a.start();
-				b.start();				
+				//b.start();				
 			}
 		});	
 	}
