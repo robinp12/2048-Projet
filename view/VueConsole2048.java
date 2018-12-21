@@ -36,7 +36,7 @@ public class VueConsole2048 extends Vue2048 implements Observer{
 			System.out.println("Gagné !");
 		}else if(controller.estPerdu()) {
 			System.out.println("score : " + model.getScore() + "\n");
-			System.out.println("Perdu !\n appuyer sur enter pour redémarrer");
+			System.out.println("Perdu !\n appuyer sur réinitialiser pour redémarrer");
 		}else {
 		if(model.getScore() > 0) System.out.println("score : " + model.getScore() + "\n");
 		System.out.println(affi);
