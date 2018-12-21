@@ -1,5 +1,6 @@
 package view;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -261,7 +262,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 80));
+					if(valeur > 512) {
+						numeroCase[i][e].setFont(new Font("Microsoft Himalaya", Font.PLAIN, 80));
+					}else {
+						numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 80));
+					}
 					numeroCase[i][e].setSize(100, 100);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
@@ -271,7 +276,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 60));
+					if(valeur > 512) {
+						numeroCase[i][e].setFont(new Font("Microsoft Himalaya", Font.PLAIN, 60));
+					}else {
+						numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 60));
+					}
 					numeroCase[i][e].setSize(79, 79);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
@@ -281,7 +290,12 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 50));
+					if(valeur > 512) {
+						numeroCase[i][e].setFont(new Font("Microsoft Himalaya", Font.PLAIN, 50));
+					}else {
+						numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 50));
+					}
+					
 					numeroCase[i][e].setSize(65, 65);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
@@ -291,7 +305,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 40));
+					if(valeur > 512) {
+						numeroCase[i][e].setFont(new Font("Microsoft Himalaya", Font.PLAIN, 40));
+					}else {
+						numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 40));
+					}
 					numeroCase[i][e].setSize(57, 57);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
@@ -301,7 +319,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 32));
+					if(valeur > 512) {
+						numeroCase[i][e].setFont(new Font("Microsoft Himalaya", Font.PLAIN, 32));
+					}else {
+						numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 32));
+					}
 					numeroCase[i][e].setSize(49, 49);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
@@ -311,7 +333,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					frame.add(tuiles[i][e]);
 
 					numeroCase[i][e].setText(String.valueOf(valeur));
-					numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 28));
+					if(valeur > 512) {
+						numeroCase[i][e].setFont(new Font("Microsoft Himalaya", Font.PLAIN, 28));
+					}else {
+						numeroCase[i][e].setFont(new Font("Arial", Font.PLAIN, 28));
+					}
 					numeroCase[i][e].setSize(44, 44);
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
