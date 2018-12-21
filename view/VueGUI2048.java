@@ -23,13 +23,13 @@ import model.Plateau;
 
 public class VueGUI2048 extends Vue2048 implements KeyListener{
 
-	/*
+	/**
 	 * Initialisation du timer a 0.
 	 */
 	private int miliseconde = 0, seconde = 0, minute = 0;
 	int x = model.getDimension();
 	private Color couleurGris = new Color(180,180,180);
-	/*
+	/**
 	 * Definition des elements de la fenetre.
 	 */
 	private JFrame 	frame;
@@ -52,7 +52,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	private JButton boutonGauche;
 	private JButton boutonDroite;
 
-	/*
+	/**
 	 * Initialisation de la fenetre principale.
 	 * Appel des methodes pour former la fenetre.
 	 * @param Le model parent
@@ -79,7 +79,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 
 		creditConsole();
 	}
-	/*
+	/**
 	 * @return Les milisecondes
 	 */
 	public int getMiliseconde() {
@@ -88,7 +88,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	public void setMiliseconde(int miliseconde) {
 		this.miliseconde = miliseconde;
 	}
-	/*
+	/**
 	 * @return Les secondes
 	 */
 	public int getSeconde() {
@@ -97,7 +97,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	public void setSeconde(int seconde) {
 		this.seconde = seconde;
 	}
-	/*
+	/**
 	 * @return Les minutes
 	 */
 	public int getMinute() {
@@ -120,11 +120,11 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	public void keyTyped(KeyEvent e) {
 
 	}
+	/**
+	 * Action quand on appuye sur les fleches.
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		/*
-		 * Action quand on appuye sur les fleches.
-		 */
 		if(!controller.estGagner() && !controller.estPerdu() && controller.getEstDemarrer()) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_LEFT) {
@@ -152,7 +152,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 
 	}
-	/*
+	/**
 	 * Fenetre dialogue pour le choix du nombre de tuiles.
 	 */
 	public void choixTuiles(){
@@ -184,7 +184,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		});
 		fenetreChoix.add(nombreCaseCombo);
 	}
-	/*
+	/**
 	 * Boite de dialogue par defaut.
 	 * @param titre
 	 * Titre de la boite de dialogue.
@@ -200,7 +200,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
         fenetreCredit.add(new JLabel(texte));
         fenetreCredit.setVisible(true);
 	}
-	/*
+	/**
 	 * Creation des tuiles.
 	 */
 	public void tuiles(int x) {
@@ -229,7 +229,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				tuiles[i][e].setBackground(Color.LIGHT_GRAY);
 				numeroCase[i][e] = new JLabel();
 				
-				/*
+				/**
 				 * Creation des tailles, position et valeur de la case.
 				 */
 				switch (x) {
@@ -316,7 +316,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					tuiles[i][e].add(numeroCase[i][e]);
 					break;
 				}
-				/*
+				/**
 				 * Creation des couleurs pour chaque tuiles.
 				 */
 				switch (valeur) {
@@ -393,7 +393,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 					}
 					labelScore.setText("Score: " + model.getScore());
 					labelTemps.setText("Temps: " + getMinute() + ":" + getSeconde() + ":" + getMiliseconde());
-					/*
+					/**
 					 * Changement de couleur du titre.
 					 */
 					if(couleurMin < 255 && couleurMax > 0) {
@@ -407,7 +407,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				}
 			});
 	}
-	/*
+	/**
 	 * Creation des elements dans la fenetre laterale droite.
 	 */
 	public void panneauDroit() {
@@ -450,7 +450,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		boutonCredit.addActionListener(actionCredit);
 		frame.add(boutonCredit);
 		
-		/*
+		/**
 		 *Creation des 4 Boutons directionnels.
 		 */
 		boutonHaut = new JButton("\u21e7");
@@ -485,7 +485,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 		boutonDroite.setForeground(Color.BLUE);
 		frame.add(boutonDroite);
 	}
-	/*
+	/**
 	 * Texte s'affichant dans le dialogue du credit.
 	 * 
 	 * @return Un string de texte allant s'afficher dans boite de dialogue. 
@@ -499,7 +499,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 				+ "  Ludo Van Den Dorpe\n"
 				+ "appuyer sur 2,3,4,5,6,7,8 ou 9 pour choisir la dimension du plateau et demarrer le 2048\n");
 	}
-	/*
+	/**
 	 * Action au clique sur le bouton demarrer.
 	 */
 	AbstractAction actionDemarrer = new AbstractAction() {
@@ -516,13 +516,13 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
             setMinute(0);
 			timer.start();
 			controller.setEstDemarrer(true);
-			/*
+			/**
 			 * Reinitialisation du temps a 0.
 			 */
 			labelTemps.setVisible(true);
 		}
 	};
-	/*
+	/**
 	 * Action au clique sur le bouton credit.
 	 */
 	AbstractAction actionCredit = new AbstractAction() {
@@ -534,7 +534,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			boiteDialogue("Credit ©",texteCredit());
 		}
 	};
-	/*
+	/**
 	 * Action au clique sur le bouton directionnel Haut.
 	 */
 	AbstractAction actionHaut = new AbstractAction() {
@@ -547,7 +547,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			model.deplacement("H");
 		}
 	};
-	/*
+	/**
 	 * Action au clique sur le bouton directionnel Bas.
 	 */
 	AbstractAction actionBas = new AbstractAction() {
@@ -560,7 +560,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			model.deplacement("B");
 		}
 	};
-	/*
+	/**
 	 * Action au clique sur le bouton directionnel Gauche.
 	 */
 	AbstractAction actionGauche = new AbstractAction() {
@@ -573,7 +573,7 @@ public class VueGUI2048 extends Vue2048 implements KeyListener{
 			model.deplacement("G");
 		}
 	};
-	/*
+	/**
 	 * Action au clique sur le bouton directionnel Droit.
 	 */
 	AbstractAction actionDroite = new AbstractAction() {
