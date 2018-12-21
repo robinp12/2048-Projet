@@ -12,14 +12,14 @@ public class Plateau extends Observable {
 
 	public Plateau() {
 	}
-	/*
+	/**
 	 * Retourne le score du joueur
 	 * @return le score du joueur
 	 */
 	public int getScore() {
 		return score;
 	}
-	/*
+	/**
 	 * Mise à jour de la dimension du tableau
 	 * @param x la nouvelle dimension du tableau
 	 */
@@ -27,14 +27,14 @@ public class Plateau extends Observable {
 		dimension = x;
 
 	}
-	/*
+	/**
 	 * Retourne la dimension du tableau
 	 * @return la dimension du tableau
 	 */
 	public int getDimension() {
 		return dimension;
 	}
-	/*
+	/**
 	 * Retourne le fait que le jeu soit bloqué ou non
 	 * @return estBloquer
 	 */
@@ -43,7 +43,7 @@ public class Plateau extends Observable {
 	}
 
 
-	/*
+	/**
 	 * Retourne la valeur de la case demandée
 	 * @param la ligne et la colonne de la case souhaitée
 	 * @return la valeur de la case aux indices donnés
@@ -52,7 +52,7 @@ public class Plateau extends Observable {
 		return tableau[i][e];
 	}
 
-	/*
+	/**
 	 * Multiplie la valeur de la case entrée par 2
 	 * Addition du score
 	 * @return valeur multipliée par 2
@@ -61,7 +61,7 @@ public class Plateau extends Observable {
 		score += valeur * 10;
 		return valeur * 2;
 	}
-	/*
+	/**
 	 * Fait le déplacement souhaité par le joueur
 	 * @param le choix de déplacement du joueur (bas, gauche, haut ou droite)
 	 */
@@ -182,7 +182,7 @@ public class Plateau extends Observable {
 		notifyObservers();
 
 	}
-/*
+/**
  * Generation du chiffre 2 ou 4
  * @return nombre aleatoire généré  
  */
@@ -196,7 +196,7 @@ public class Plateau extends Observable {
 		}
 		return n;
 	}
-/*
+/**
  * Initialisation de toutes les cases a 0.
  * @param les dimension du tableau
  */
@@ -215,7 +215,7 @@ public class Plateau extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-	/*
+	/**
 	 * Ajout d'un nombre aleatoire
 	 */
 	public void ajouterAleatoire() {
