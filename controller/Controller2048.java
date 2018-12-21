@@ -14,7 +14,7 @@ public class Controller2048 {
 	public Controller2048(Plateau model) {
 		this.model = model;
 	}
-	/*
+	/**
 	 * Dis si le déplacement du joueur est bloqué ou non
 	 * @return si le déplacement du joueur est bloqué ou non
 	 */
@@ -27,7 +27,7 @@ public class Controller2048 {
 		this.vue = vue;
 
 	}
-	/*
+	/**
 	 * Vide (rend invisible) dans l'interface toutes les cases du tableau
 	 * @param le tableau à vider
 	 */
@@ -38,7 +38,7 @@ public class Controller2048 {
 			}
 		}
 	}
-	/*
+	/**
 	 * Indique si la partie est gagnée ou non
 	 * @return si la partie est gagnée ou non
 	 */
@@ -62,7 +62,7 @@ public class Controller2048 {
 		}
 		return false;
 	}
-	/*
+	/**
 	 * Indique si la partie est perdue ou non
 	 * @return si la partie est perdue ou non
 	 */
@@ -101,14 +101,14 @@ public class Controller2048 {
 			return false;
 		}
 	}
-	/*
+	/**
 	 * Mise à jour du fait que le jeu soit démarrer ou non
 	 * @param un boolean indiquant si le jeu a démarrer ou non
 	 */
 	public void setEstDemarrer(boolean x) {
 		estDemarrer = x;
 	}
-	/*
+	/**
 	 * Indique si le jeu est démarré ou non
 	 * @return si le jeu est demarré ou non
 	 */
